@@ -1,6 +1,6 @@
 {
   "name": "chart.xkcd-vue",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "chart.xkcd component for Vue",
   "main": "dist/chart.xkcd-vue.js",
   "module": "src/index.js",
