@@ -1,0 +1,61 @@
+{
+  "name": "chart.xkcd-vue",
+  "version": "0.0.0",
+  "description": "chart.xkcd component for Vue",
+  "main": "dist/chart.xkcd-vue.js",
+  "module": "src/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "lint": "eslint src test",
+    "unit": "karma start",
+    "test": "npm run lint && npm run unit",
+    "minify": "uglifyjs dist/chart.xkcd-vue.js -m -o dist/chart.xkcd-vue.min.js",
+    "build": "npm run bundle && npm run minify",
+    "dev": "npm run bundle -- -w",
+    "preversion": "npm test",
+    "version": "npm run build && git add -A dist",
+    "postversion": "git push origin master && git push --tags && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shiyiya/chart.xkcd-vue.git"
+  },
+  "keywords": [
+    "vue",
+    "highcharts",
+    "chart",
+    "plugin",
+    "component"
+  ],
+  "author": "Zhenye Wei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shiyiya/chart.xkcd-vue/issues"
+  },
+  "homepage": "https://github.com/shiyiya/chart.xkcd-vue",
+  "peerDependencies": {
+    "chart.xkcd": ">=4.2.0",
+    "vue": ">=2.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "karma": "^4.0.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.2",
+    "karma-mocha": "^1.3.0",
+    "karma-rollup-preprocessor": "^6.1.2",
+    "mocha": "^5.2.0",
+    "rollup": "^0.68.2",
+    "rollup-plugin-istanbul": "^2.0.1",
+    "uglify-js": "^3.4.9",
+    "vue": "^2.5.22",
+    "chart.xkcd": "^1.0.5"
+  }
+}
