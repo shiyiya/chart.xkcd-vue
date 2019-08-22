@@ -11,7 +11,6 @@ export default function clone(obj) {
     }
     return copy;
   }
-  /* istanbul ignore else */
   if (obj instanceof Object) {
     copy = {};
     for (var key in obj) {

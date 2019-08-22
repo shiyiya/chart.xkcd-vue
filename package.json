@@ -12,7 +12,8 @@
     "lint": "eslint src test",
     "unit": "karma start",
     "test": "npm run lint && npm run unit",
-    "minify": "uglifyjs dist/chart.xkcd-vue.js -m -o dist/chart.xkcd-vue.min.js",
+    "bundle": "rollup src/index.js -f umd -n ChartXkcdVue -g ChartXkcdVue:ChartXkcdVue -e chart.xkcd -o dist/chart.xkcd-vue.js",
+    "minify": "uglifyjs  dist/chart.xkcd-vue.js -m -o dist/chart.xkcd-vue.min.js",
     "build": "npm run bundle && npm run minify",
     "dev": "npm run bundle -- -w",
     "preversion": "npm test",
@@ -25,12 +26,12 @@
   },
   "keywords": [
     "vue",
-    "highcharts",
+    "chart.xkcd",
     "chart",
-    "plugin",
-    "component"
+    "component",
+    "ChartXkcdVue"
   ],
-  "author": "Zhenye Wei",
+  "author": "shiyiya",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/shiyiya/chart.xkcd-vue/issues"
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "chart.xkcd": "^1.0.5",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
@@ -54,8 +56,6 @@
     "mocha": "^5.2.0",
     "rollup": "^0.68.2",
     "rollup-plugin-istanbul": "^2.0.1",
-    "uglify-js": "^3.4.9",
-    "vue": "^2.5.22",
-    "chart.xkcd": "^1.0.5"
+    "vue": "^2.5.22"
   }
 }

@@ -20,7 +20,7 @@ export default function create(name, chartXkcd) {
     },
     mounted: function () {
       // eslint-disable-next-line no-new
-      new chartXkcd[ctorsName](this.$refs.ref, this.config)
+      new chartXkcd[ctorsName](this.$el, this.config)
     },
     beforeDestroy: function () {
       this.chart.destroy()
@@ -28,8 +28,8 @@ export default function create(name, chartXkcd) {
     methods: {
       // TODO
     },
-    render(createElement) {
-      return createElement('svg', { ref: 'ref' })
+    render: function (createElement) {
+      return createElement('svg')
     }
   }
 }
