@@ -1,5 +1,5 @@
 export default {
-  ChartXkcdLine: 'Line',
-  ChartXkcdBar: 'Pie',
-  ChartXkcdPie: 'Bar'
+  'chartxkcd-line': 'Line',
+  'chartXkcd-bar': 'Pie',
+  'chartXkcd-pie': 'Bar'
 }

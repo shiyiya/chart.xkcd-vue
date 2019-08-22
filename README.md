@@ -15,15 +15,17 @@ npm i -S chart.xkcd-vue
 
 ## Usage
 
-### auto register components
+### Auto register components
 
 You can simply import it and use it.
+** All components will be prefixed with `ChartXkcd` **
 
 ```js
 import Vue from 'vue'
 import ChartXkcdVue from 'chart.xkcd-vue'
 
-// ↓↓↓ will auto register  ChartXkcdLine: 'Line', ChartXkcdBar: 'Pie', ChartXkcdPie: 'Bar'
+// ↓↓↓ will auto register all chart.xkcd component.
+// ↓↓↓ eg: chartxkcd-line: 'Line', chartxkcd-bar: 'Pie', chartxkcd-pie: 'Bar' ...
 Vue.use(ChartXkcdVue)
 ```
 
@@ -55,7 +57,7 @@ When chart.xkcd-vue is included by `<script>`, it will be installed automaticall
     }
   },
   render: function (createElement) {
-    return createElement('ChartXkcdLine')
+    return createElement('chartxkcd-line')
   }
 }
 ```
@@ -66,12 +68,14 @@ When chart.xkcd-vue is included by `<script>`, it will be installed automaticall
 npm i -S chart.xkcd
 ```
 
+** All components need to be prefixed with `ChartXkcd`**
+
 ```js
 import Vue from 'vue'
 import chartXkcd from 'chart.xkcd'
 import { genComponent } from 'chart.xkcd-vue'
 
-// register -> { componentTag:ChartXkcdLine, value: chartXkcd.Line }
-const ChartXkcdLine = genComponent('ChartXkcdLine', chartXkcd)
-Vue.component('ChartXkcdLine', ChartXkcdLine)
+// register -> { componentTag: chartxkcd-line, value: chartXkcd.Line }
+Vue.component('chartxkcd-line', genComponent(chartXkcd, 'chartxkcd-line'))
+Vue.component('chartxkcd-pie', genComponent(chartXkcd, 'chartxkcd-pie'))
 ```

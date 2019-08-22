@@ -1,6 +1,6 @@
 import ctors from './constructors.js'
 
-export default function create(name, chartXkcd) {
+export default function create(chartXkcd, name) {
   var ctorsName = ctors[name]
   if (!ctorsName) {
     return null
@@ -22,9 +22,7 @@ export default function create(name, chartXkcd) {
       // eslint-disable-next-line no-new
       new chartXkcd[ctorsName](this.$el, this.config)
     },
-    beforeDestroy: function () {
-      this.chart.destroy()
-    },
+    beforeDestroy: function () {},
     methods: {
       // TODO
     },

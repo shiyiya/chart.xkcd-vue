@@ -7,10 +7,7 @@ module.exports = (config) => {
     browsers: ['ChromeHeadless'],
     files: [
       'node_modules/vue/dist/vue.min.js',
-      'node_modules/chart.xkcd/dist/chart.xkcd.js',
-      'node_modules/highcharts/modules/stock.js',
-      'node_modules/highcharts/modules/map.js',
-      'node_modules/highcharts/modules/gantt.js',
+      'node_modules/chart.xkcd/dist/chart.xkcd.min.js',
       'test/test.js',
     ],
     preprocessors: {

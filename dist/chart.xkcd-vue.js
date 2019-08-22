@@ -7,12 +7,12 @@
   chartXkcd = chartXkcd && chartXkcd.hasOwnProperty('default') ? chartXkcd['default'] : chartXkcd;
 
   var ctors = {
-    ChartXkcdLine: 'Line',
-    ChartXkcdBar: 'Pie',
-    ChartXkcdPie: 'Bar'
+    'chartxkcd-line': 'Line',
+    'chartXkcd-bar': 'Pie',
+    'chartXkcd-pie': 'Bar'
   };
 
-  function create(name, chartXkcd$$1) {
+  function create(chartXkcd$$1, name) {
     var ctorsName = ctors[name];
     if (!ctorsName) {
       return null
@@ -34,9 +34,7 @@
         // eslint-disable-next-line no-new
         new chartXkcd$$1[ctorsName](this.$el, this.config);
       },
-      beforeDestroy: function () {
-        this.chart.destroy();
-      },
+      beforeDestroy: function () {},
       methods: {
         // TODO
       },
@@ -48,16 +46,16 @@
 
   function install(Vue) {
     for (var name in ctors) {
-      var component = create(name, chartXkcd);
+      var component = create(chartXkcd, name);
       component && Vue.component(name, component);
     }
   }
 
   if (typeof window !== 'undefined' && window.Vue && window.chartXkcd) {
-    install(window.Vue, window.chartXkcd);
+    install(window.Vue);
   }
 
-  exports.default = install;
+  exports.install = install;
   exports.genComponent = create;
 
   Object.defineProperty(exports, '__esModule', { value: true });
