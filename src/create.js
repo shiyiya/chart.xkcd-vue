@@ -10,22 +10,21 @@ export default function create(chartXkcd, name) {
     props: {
       config: { type: Object, required: true }
     },
-    watch: {
-      config: {
-        handler: function () {
-          // TODO
-        },
-        deep: true
-      }
-    },
+    // TODO
+    // watch: {
+    //   config: {
+    //     handler: function () {},
+    //     deep: true
+    //   }
+    // },
+
     mounted: function () {
       // eslint-disable-next-line no-new
       new chartXkcd[ctorsName](this.$el, this.config)
     },
-    beforeDestroy: function () {},
-    methods: {
-      // TODO
-    },
+
+    // beforeDestroy: function () {},
+
     render: function (createElement) {
       return createElement('svg')
     }

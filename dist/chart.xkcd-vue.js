@@ -9,7 +9,8 @@
   var ctors = {
     'chartxkcd-line': 'Line',
     'chartxkcd-bar': 'Bar',
-    'chartxkcd-pie': 'Pie'
+    'chartxkcd-pie': 'Pie',
+    'chartxkcd-xy': 'XY'
   };
 
   function create(chartXkcd$$1, name) {
@@ -31,6 +32,7 @@
         }
       },
       mounted: function () {
+        console.log(ctorsName);
         // eslint-disable-next-line no-new
         new chartXkcd$$1[ctorsName](this.$el, this.config);
       },

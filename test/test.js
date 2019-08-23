@@ -23,20 +23,24 @@ describe('chart.xkcd-vue', function () {
     Vue.use(chartXkcdVue)
   })
 
-  it('should support <ChartXkcdLine> component', function () {
-    return componentHelper('<ChartXkcdLine :config="{}"></ChartXkcdLine>')
+  it('should support <chartxkcd-line> component', function () {
+    return componentHelper('<chartxkcd-line :config="{}"></chartxkcd-line>')
   })
 
-  it('should support <ChartXkcdBar> component', function () {
-    return componentHelper('<ChartXkcdBar :config="{}"></ChartXkcdBar>')
+  it('should support <chartxkcd-bar> component', function () {
+    return componentHelper('<chartxkcd-bar :config="{}"></chartxkcd-bar>')
   })
 
-  it('should support <ChartXkcdPie> component', function () {
-    return componentHelper('<ChartXkcdPie :config="{}"></ChartXkcdPie>')
+  it('should support <chartxkcd-pie> component', function () {
+    return componentHelper('< <chartxkcd-pie> :config="{}"></chartxkcd-pie>')
+  })
+
+  it('should support <chartxkcd-xy> component', function () {
+    return componentHelper('<chartxkcd-xy> :config="{}"></chartxkcd-xy>')
   })
 
   it('can generate single Componet', function () {
-    var names = ['ChartXkcdLine', 'ChartXkcdBar', 'ChartXkcdPie']
+    var names = ['chartxkcd-line', 'chartxkcd-bar', 'chartxkcd-pie', 'chartxkcd-xy']
     names.forEach(function (name) {
       var Component = genComponent(window.chartXkcd, name)
       expect(Component.name).to.equal(name)

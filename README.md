@@ -13,7 +13,7 @@ Check out the [documentation](https://timqian.com/chart.xkcd/) for more instruct
 ## Requirements
 
 - Vue >= 2.0.0
-- chart.xkcd >= 4.2.0
+- chart.xkcd >= 1.0.5
 
 ## Installation
 

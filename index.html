@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.xkcd@1/dist/chart.xkcd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.xkcd@1.0.7/dist/chart.xkcd.min.js"></script>
     <script src="./dist/chart.xkcd-vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -15,12 +15,18 @@
         max-height: 200px;
         margin: 0 auto;
       }
+      h3 {
+        color: brown;
+      }
     </style>
   </head>
   <body>
     <div id="root">
       <h3 class="marked">chartxkcd-line</h3>
       <chartxkcd-line :config="lineConfig"></chartxkcd-line>
+
+      <h3 class="marked">chartxkcd-xy</h3>
+      <chartxkcd-xy :config="xyConfig"></chartxkcd-xy>
 
       <h3 class="marked">chartxkcd-bar</h3>
       <chartxkcd-bar :config="barConfig"></chartxkcd-bar>
@@ -49,6 +55,44 @@
                   data: [0, 1, 30, 70, 80, 100, 50, 80, 40, 150]
                 }
               ]
+            }
+          },
+          xyConfig: {
+            title: 'Pokemon farms', //optional
+            xLabel: 'Coodinate', //optional
+            yLabel: 'Count', //optional
+            data: {
+              datasets: [
+                {
+                  label: 'Pikachu',
+                  data: [
+                    { x: 3, y: 10 },
+                    { x: 4, y: 122 },
+                    { x: 10, y: 100 },
+                    { x: 1, y: 2 },
+                    { x: 2, y: 4 }
+                  ]
+                },
+                {
+                  label: 'Squirtle',
+                  data: [
+                    { x: 3, y: 122 },
+                    { x: 4, y: 212 },
+                    { x: -3, y: 100 },
+                    { x: 1, y: 1 },
+                    { x: 1.5, y: 12 }
+                  ]
+                }
+              ]
+            },
+            options: {
+              //optional
+              xTickCount: 5,
+              yTickCount: 5,
+              legendPosition: chartXkcd.config.positionType.upRight,
+              showLine: false,
+              timeFormat: undefined,
+              dotSize: 1
             }
           },
           barConfig: {
