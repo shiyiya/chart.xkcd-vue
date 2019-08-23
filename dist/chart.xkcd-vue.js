@@ -23,23 +23,21 @@
       props: {
         config: { type: Object, required: true }
       },
-      watch: {
-        config: {
-          handler: function () {
-            // TODO
-          },
-          deep: true
-        }
-      },
+      // TODO
+      // watch: {
+      //   config: {
+      //     handler: function () {},
+      //     deep: true
+      //   }
+      // },
+
       mounted: function () {
-        console.log(ctorsName);
         // eslint-disable-next-line no-new
         new chartXkcd$$1[ctorsName](this.$el, this.config);
       },
-      beforeDestroy: function () {},
-      methods: {
-        // TODO
-      },
+
+      // beforeDestroy: function () {},
+
       render: function (createElement) {
         return createElement('svg')
       }
@@ -49,7 +47,6 @@
   function install(Vue) {
     for (var name in ctors) {
       var component = create(chartXkcd, name);
-      console.log(component);
       component && Vue.component(name, component);
     }
   }
