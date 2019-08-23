@@ -1,6 +1,14 @@
 # chart.xkcd-vue
 
-chart.xkcd component for Vue.
+[chart.xkcd](https://timqian.com/chart.xkcd/) component for Vue.
+
+## what's chart.xkcd?
+
+[![](https://raw.githubusercontent.com/timqian/images/master/20190819131226.gif)](https://timqian.com/chart.xkcd/)
+
+Chart.xkcd is a chart library plots “sketchy”, “cartoony” or “hand-drawn” styled charts.
+
+Check out the [documentation](https://timqian.com/chart.xkcd/) for more instructions and links, or try out the [examples](./examples), or chat with us in [Slack](https://join.slack.com/t/t9tio/shared_invite/enQtNjgzMzkwMDM0NTE3LTE5ZTUzYjU4Y2I0YzRiZjNkYTkzMzE1ZmM0NDdmYzRlZmMxNGY1MzZlN2EwYjYyNWVlMWY0Nzk2MDBhNWZlY2I)
 
 ## Requirements
 
