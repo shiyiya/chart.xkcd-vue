@@ -8,8 +8,8 @@
 
   var ctors = {
     'chartxkcd-line': 'Line',
-    'chartXkcd-bar': 'Pie',
-    'chartXkcd-pie': 'Bar'
+    'chartxkcd-bar': 'Bar',
+    'chartxkcd-pie': 'Pie'
   };
 
   function create(chartXkcd$$1, name) {
@@ -47,6 +47,7 @@
   function install(Vue) {
     for (var name in ctors) {
       var component = create(chartXkcd, name);
+      console.log(component);
       component && Vue.component(name, component);
     }
   }
@@ -55,7 +56,7 @@
     install(window.Vue);
   }
 
-  exports.install = install;
+  exports.default = install;
   exports.genComponent = create;
 
   Object.defineProperty(exports, '__esModule', { value: true });
