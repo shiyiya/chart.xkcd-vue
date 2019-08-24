@@ -9,30 +9,339 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.xkcd@1.0.7/dist/chart.xkcd.min.js"></script>
     <script src="./dist/chart.xkcd-vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/default.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad()
+    </script>
     <style>
+      body {
+        background: lightblue;
+      }
       #root {
-        max-width: 400px;
-        max-height: 200px;
+        max-width: 720px;
         margin: 0 auto;
       }
+      img {
+        max-width: 100%;
+      }
       h3 {
-        color: brown;
+        color: #348b4a;
+      }
+      a {
+        font-weight: bold;
+        color: royalblue;
+      }
+      a:hover {
+        color: #003bec;
+      }
+      .comp {
+        margin-top: 40px;
+        border: 2px #348b4a solid;
+        padding: 20px;
+      }
+      .view {
+        max-width: 400px;
+        max-height: 250px;
+        margin: 0 auto;
+      }
+      .opt {
+        display: inline-block;
+      }
+      .config {
+        margin-top: 10px;
+        width: 100%;
+        padding: 8px 4px;
+        border: 1px solid saddlebrown;
+        background: none;
       }
     </style>
   </head>
   <body>
     <div id="root">
-      <h3 class="marked">chartxkcd-line</h3>
-      <chartxkcd-line :config="lineConfig"></chartxkcd-line>
+      <h1>chart.xkcd-vue</h1>
+      <p>
+        <script>
+          document.write(
+            marked(
+              "[chart.xkcd](https://timqian.com/chart.xkcd/) component for Vue. \n\n [chart.xkcd-vue's documentation](https://shiyiya.github.io/chart.xkcd-vue/)  [Github](https://github.com/shiyiya/chart.xkcd-vue)")
+          )
+        </script>
+      </p>
 
-      <h3 class="marked">chartxkcd-xy</h3>
-      <chartxkcd-xy :config="xyConfig"></chartxkcd-xy>
+      <h1>what's chart.xkcd?</h1>
+      <script>
+        document.write(
+          marked(
+            '[![](https://raw.githubusercontent.com/timqian/images/master/20190819131226.gif)](https://timqian.com/chart.xkcd/)' +
+              ' Chart.xkcd is a chart library plots “sketchy”, “cartoony” or “hand-drawn” styled charts. Check out the' +
+              'Check out the [documentation](https://timqian.com/chart.xkcd/) for more instructions and links, or try out the [examples](./examples), or chat with us in [Slack](https://join.slack.com/t/t9tio/shared_invite/enQtNjgzMzkwMDM0NTE3LTE5ZTUzYjU4Y2I0YzRiZjNkYTkzMzE1ZmM0NDdmYzRlZmMxNGY1MzZlN2EwYjYyNWVlMWY0Nzk2MDBhNWZlY2I)'
+          )
+        )
+      </script>
 
-      <h3 class="marked">chartxkcd-bar</h3>
-      <chartxkcd-bar :config="barConfig"></chartxkcd-bar>
+      <b>
+        You can find the documentation for the chats configurations in the
+        <a href="https://timqian.com/chart.xkcd/" rel="nofollow">
+          official library page</a
+        >.
+      </b>
 
-      <h3 class="marked">chartxkcd-pie</h3>
-      <chartxkcd-pie :config="pieConfig"></chartxkcd-pie>
+      <h1>Install</h1>
+
+      <h2>You must install chart.xkcd.</h2>
+      <pre><code class="shell">npm i -S chart.xkcd</code></pre>
+
+      <h2>① NPM</h2>
+      <pre><code class="shell">npm i -S chart.xkcd-vue</code></pre>
+
+      <h2>② script</h2>
+      <p>You can install chart.xkcd via script tag in HTML or via npm</p>
+      <script>
+        document.write(
+          marked(
+            'When chart.xkcd-vue is included by `<script>`, it will be installed automatically if `window.Vue` and `window.chartXkcd` exists, ohterwise you should to install it manually by calling `Vue.use(window.chartXkcdVue["default");`'
+          )
+        )
+      </script>
+
+      <h1>Use</h1>
+      <p>Register components at the main entry.</p>
+
+      <h2>① Register all components</h2>
+      <div>
+        <pre><code class="js">
+   import Vue from 'vue'
+   import chartXkcdVue from 'chart.xkcd-vue'
+
+   // ↓↓↓ will auto register all chart.xkcd component.
+   Vue.use(chartXkcdVue)
+          </code></pre>
+      </div>
+
+      <h2>② Register a single component</h2>
+      <pre><code class="js">
+  import Vue from 'vue'
+  import chartXkcd from 'chart.xkcd'
+  import { genComponent } from 'chart.xkcd-vue'
+  Vue.component('chartxkcd-line', genComponent(chartXkcd, 'chartxkcd-line'))
+      </code></pre>
+
+      <h2>Used in templates.</h2>
+      <pre><code class="html temp">
+      <script>
+  document.querySelector('.temp').append(`
+  <template>
+    <div id="app">
+      <chartxkcd-line :config="config"></chartxkcd-line>
+    </div>
+  </template>
+  <script>
+  export default {
+    name: "app",
+    data() {
+      return {
+        config: {
+          title: "Monthly income of an indie developer",
+          xLabel: "Month",
+          yLabel: "$ Dollors",
+          data: {
+            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+            datasets: [
+              {
+                label: "Plan",
+                data: [30, 70, 200, 300, 500, 800, 1500, 2900, 5000, 8000]
+              },
+              {
+                label: "Reality",
+                data: [0, 1, 30, 70, 80, 100, 50, 80, 40, 150]
+              }
+            ]
+          }
+        },
+  };
+  <\/script>
+`)
+
+      </script>
+      </code></pre>
+
+      <div class="comp">
+        <h3 class="marked">chartxkcd-line</h3>
+        <div class="view">
+          <chartxkcd-line :config="lineConfig"></chartxkcd-line>
+        </div>
+        <div class="opt">
+          <h3>code</h3>
+          config:
+          <input
+            class="config"
+            type="text"
+            value='{title:"Monthly income of an indie developer",xLabel:"Month",yLabel:"$ Dollors",width:900,data:{labels:["1","2","3","4","5","6","7","8","9","10"],datasets:[{label:"Plan",data:[30,70,200,300,500,800,1500,2900,5000,8000]},{label:"Reality",data:[0,1,30,70,80,100,50,80,40,150]}]}'
+          />
+          <pre><code class="html temp line">
+              <script>
+                  document.querySelector('.line').innerText = '<chartxkcd-line :config="config"></chartxkcd-line>'
+              </script>
+            </code></pre>
+          <h3>Customize chart by defining options</h3>
+          <ul>
+            <li>
+              <code>yTickCount</code>: customize tick numbers you want to see on
+              the y axis (default <code>3</code>)
+            </li>
+            <li>
+              <code>legendPosition</code>: specify where you want to place the
+              legend. (default
+              <code>chartXkcd.config.positionType.upLeft</code>) Possible
+              values:
+
+              <ul>
+                <li>up left: <code>chart.Xkcd.positionType.upLeft</code></li>
+                <li>up right: <code>chart.Xkcd.positionType.upLeft</code></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="comp">
+        <h3 class="marked">chartxkcd-xy</h3>
+        <div class="view">
+          <chartxkcd-xy :config="xyConfig"></chartxkcd-xy>
+        </div>
+        <div class="opt">
+          <h3>code</h3>
+          config:
+          <input
+            class="config"
+            type="text"
+            value="{title:'Pokemon farms',xLabel:'Coodinate',yLabel:'Count',data:{datasets:[{label:'Pikachu',data:[{x:3,y:10},{x:4,y:122},{x:10,y:100},{x:1,y:2},{x:2,y:4}]},{label:'Squirtle',data:[{x:3,y:122},{x:4,y:212},{x:-3,y:100},{x:1,y:1},{x:1.5,y:12}]}]}"
+          />
+          <pre><code class="html temp xy">
+                <script>
+                    document.querySelector('.xy').innerText = '<chartxkcd-xy :config="config"></chartxkcd-xy>'
+                </script>
+              </code></pre>
+
+          <h3>Customize chart by defining options</h3>
+          <ul>
+            <li>
+              <code>xTickCount</code>: customize tick numbers you want to see on
+              the x axis (default <code>3</code>)
+            </li>
+            <li>
+              <code>yTickCount</code>: customize tick numbers you want to see on
+              the y axis (default <code>3</code>)
+            </li>
+            <li>
+              <code>legendPosition</code>: specify where you want to place the
+              legend (default <code>chartXkcd.config.positionType.upLeft</code>)
+              Possible values:
+
+              <ul>
+                <li>up left: <code>chart.Xkcd.positionType.upLeft</code></li>
+                <li>up right: <code>chart.Xkcd.positionType.upLeft</code></li>
+              </ul>
+            </li>
+            <li>
+              <code>showLine</code>: connect the points with lines (default:
+              <code>false</code>)
+            </li>
+            <li>
+              <code>timeFormat</code>: specify the time format if the x values
+              are time (default <code>undefined</code>) chart.xkcd use
+              <a href="https://github.com/iamkun/dayjs">dayjs</a> to format
+              time, you can find the all the available formats
+              <a
+                href="https://github.com/iamkun/dayjs/blob/dev/docs/en/API-reference.md#list-of-all-available-formats"
+                >here</a
+              >
+            </li>
+            <li>
+              <code>dotSize</code>: you can change size of the dots if you want
+              (default <code>1</code>)
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="comp">
+        <h3 class="marked">chartxkcd-bar</h3>
+        <div class="view">
+          <chartxkcd-bar :config="barConfig"></chartxkcd-bar>
+        </div>
+        <div class="opt">
+          <h3>code</h3>
+          config:
+          <input
+            class="config"
+            type="text"
+            value="{data:{labels:['github stars','patrons'],datasets:[{data:[100,2]}]}}"
+          />
+          <pre><code class="html temp bar">
+                <script>
+                    document.querySelector('.bar').innerText = '<chartxkcd-bar :config="config"></chartxkcd-bar>'
+                </script>
+              </code></pre>
+
+          <h3>Customize chart by defining options</h3>
+          <ul>
+            <li>
+              <code>yTickCount</code>: customize tick numbers you want to see on
+              the y axis
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="comp">
+        <h3 class="marked">chartxkcd-pie</h3>
+        <div class="view">
+          <chartxkcd-pie :config="pieConfig"></chartxkcd-pie>
+        </div>
+        <div class="opt">
+          config:
+          <input
+            class="config"
+            type="text"
+            value="{title:'What Tim made of',data:{labels:['a','b','e','f','g'],datasets:[{data:[500,200,80,90,100]}]}}"
+          />
+          <pre><code class="html temp pie">
+                <script>
+                    document.querySelector('.pie').innerText = '<chartxkcd-pie :config="config"></chartxkcd-pie>'
+                </script>
+              </code></pre>
+          <h3>Customize chart by defining options</h3>
+          <ul>
+            <li>
+              <code>innerRadius</code>: specify empty pie chart radius (default:
+              <code>0.5</code>)
+
+              <ul>
+                <li>
+                  Want a pie chart? set <code>innerRadius</code> to
+                  <code>0</code>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <code>legendPosition</code>: specify where you want to place the
+              legend. (default
+              <code>chartXkcd.config.positionType.upLeft</code>) Possible
+              values:
+
+              <ul>
+                <li>up left: <code>chart.Xkcd.positionType.upLeft</code></li>
+                <li>up right: `chart.Xkcd.positionType.upLeft</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
     <script>
       var app = new Vue({
@@ -119,8 +428,6 @@
           }
         }
       })
-
-      console.log(app)
     </script>
   </body>
 </html>

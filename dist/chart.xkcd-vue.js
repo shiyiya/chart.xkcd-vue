@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('chart.xkcd')) :
   typeof define === 'function' && define.amd ? define(['exports', 'chart.xkcd'], factory) :
-  (global = global || self, factory(global.ChartXkcdVue = {}, global.chartXkcd));
+  (global = global || self, factory(global.chartXkcdVue = {}, global.chartXkcd));
 }(this, function (exports, chartXkcd) { 'use strict';
 
   chartXkcd = chartXkcd && chartXkcd.hasOwnProperty('default') ? chartXkcd['default'] : chartXkcd;

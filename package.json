@@ -1,9 +1,9 @@
 {
   "name": "chart.xkcd-vue",
-  "version": "0.0.2",
+  "version": "1.0.7",
   "description": "chart.xkcd component for Vue",
   "main": "dist/chart.xkcd-vue.js",
-  "module": "src/index.js",
+  "module": "src/chart.xkcd-vue.esm.js",
   "files": [
     "dist",
     "src"
@@ -12,9 +12,10 @@
     "lint": "eslint src test",
     "unit": "karma start",
     "test": "npm run lint && npm run unit",
-    "bundle": "rollup src/index.js -f umd -n ChartXkcdVue -g ChartXkcdVue:ChartXkcdVue -e chart.xkcd -o dist/chart.xkcd-vue.js",
+    "bundle:esm": "rollup src/index.js -f esm -n chartXkcdVue -g chartXkcdVue:chartXkcdVue -e chart.xkcd -o dist/chart.xkcd-vue.esm.js",
+    "bundle": "rollup src/index.js -f umd -n chartXkcdVue -g chartXkcdVue:chartXkcdVue -e chart.xkcd -o dist/chart.xkcd-vue.js",
     "minify": "uglifyjs  dist/chart.xkcd-vue.js -m -o dist/chart.xkcd-vue.min.js",
-    "build": "npm run bundle && npm run minify",
+    "build": "npm run bundle && npm run minify && npm run bundle:esm",
     "dev": "npm run bundle -- -w",
     "preversion": "npm test",
     "version": "npm run build && git add -A dist",
@@ -30,7 +31,7 @@
     "chart.xkcd",
     "chart",
     "component",
-    "ChartXkcdVue"
+    "chartXkcdVue"
   ],
   "author": "shiyiya",
   "license": "MIT",
@@ -39,12 +40,13 @@
   },
   "homepage": "https://github.com/shiyiya/chart.xkcd-vue",
   "peerDependencies": {
-    "chart.xkcd": ">=4.2.0",
+    "chart.xkcd": ">=1.0.7",
     "vue": ">=2.0.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "chart.xkcd": "^1.0.7",
+    "chart.xkcd-vue": "^0.0.2",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",

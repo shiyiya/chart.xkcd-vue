@@ -2,7 +2,6 @@
 /* eslint-env mocha */
 
 import chartXkcdVue, { genComponent } from '../src/index.js'
-// import clone from '../src/clone.js'
 
 describe('chart.xkcd-vue', function () {
   var createVM = function (template) {
@@ -49,16 +48,3 @@ describe('chart.xkcd-vue', function () {
     expect(Unknown).to.not.exist
   })
 })
-
-// describe('clone', function () {
-//   it('should clone object', function () {
-//     var obj = {
-//       arr: [{ a: 1 }, 2, '3', null, undefined, false],
-//       num: 1,
-//       str: '2',
-//       bool: false,
-//       obj: { a: 1 }
-//     }
-//     expect(clone(obj)).to.deep.equal(obj)
-//   })
-// })

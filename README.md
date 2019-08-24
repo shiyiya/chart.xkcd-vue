@@ -1,5 +1,7 @@
 # chart.xkcd-vue
 
+[chart.xkcd-vue's documentation](https://shiyiya.github.io/chart.xkcd-vue/)
+
 [chart.xkcd](https://timqian.com/chart.xkcd/) component for Vue.
 
 ## what's chart.xkcd?
@@ -13,7 +15,7 @@ Check out the [documentation](https://timqian.com/chart.xkcd/) for more instruct
 ## Requirements
 
 - Vue >= 2.0.0
-- chart.xkcd >= 1.0.5
+- chart.xkcd >= 1.0.7
 
 ## Installation
 
@@ -26,18 +28,18 @@ npm i -S chart.xkcd-vue
 ### Auto register components
 
 You can simply import it and use it.
-** All components will be prefixed with `ChartXkcd` **
+**All components will be prefixed with `chartxkcd-`**
 
 ```js
 import Vue from 'vue'
-import ChartXkcdVue from 'chart.xkcd-vue'
+import chartXkcdVue from 'chart.xkcd-vue'
 
 // ↓↓↓ will auto register all chart.xkcd component.
 // ↓↓↓ eg: chartxkcd-line: 'Line', chartxkcd-bar: 'Pie', chartxkcd-pie: 'Bar' ...
-Vue.use(ChartXkcdVue)
+Vue.use(chartXkcdVue)
 ```
 
-When chart.xkcd-vue is included by `<script>`, it will be installed automatically if `window.Vue` and `window.chartXkcd` exists, ohterwise you should to install it manually by calling `Vue.use(window.ChartXkcdVue['default']);`.
+When chart.xkcd-vue is included by `<script>`, it will be installed automatically if `window.Vue` and `window.chartXkcd` exists, ohterwise you should to install it manually by calling `Vue.use(window.chartXkcdVue['default']);`.
 
 ```js
 {
@@ -76,7 +78,7 @@ When chart.xkcd-vue is included by `<script>`, it will be installed automaticall
 npm i -S chart.xkcd
 ```
 
-** All components need to be prefixed with `ChartXkcd`**
+**All components need to be prefixed with `chartxkcd-`**
 
 ```js
 import Vue from 'vue'
