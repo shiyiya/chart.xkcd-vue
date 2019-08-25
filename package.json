@@ -46,7 +46,6 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chart.xkcd": "^1.0.7",
-    "chart.xkcd-vue": "^0.0.2",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",

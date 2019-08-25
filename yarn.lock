@@ -580,11 +580,6 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
-chart.xkcd-vue@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/chart.xkcd-vue/-/chart.xkcd-vue-0.0.2.tgz#4f8ae05f56c5b80572400ed1382f23cb4a8e3720"
-  integrity sha512-EPtt150oPKoMXDn8Mg5TuJPuWeKYn6Cb7vjVuOU/id5rCk8gGuZ6IjQ448Jr78bg9zH7/Bqj5v+GMVg5/o1O+w==
-
 chart.xkcd@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/chart.xkcd/-/chart.xkcd-1.0.7.tgz#f906e3286b9b1166008c405d8072dec84db35885"
