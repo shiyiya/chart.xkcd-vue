@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import chartXkcd from 'chart.xkcd';
 
 var ctors = {
@@ -7,12 +8,14 @@ var ctors = {
   'chartxkcd-xy': 'XY'
 };
 
-function create(chartXkcd$$1, name) {
+function create(name) {
   var ctorsName = ctors[name];
   if (!ctorsName) {
-    return null
+    // eslint-disable-next-line prefer-template
+    throw TypeError(name + ' component does not exist')
   }
-  return {
+
+  return Vue.extend({
     name: name,
     props: {
       config: { type: Object, required: true }
@@ -27,21 +30,21 @@ function create(chartXkcd$$1, name) {
 
     mounted: function () {
       // eslint-disable-next-line no-new
-      new chartXkcd$$1[ctorsName](this.$el, this.config);
+      new chartXkcd[ctorsName](this.$el, this.config);
     },
 
     // beforeDestroy: function () {},
 
-    render: function (createElement) {
-      return createElement('svg')
+    render: function (h) {
+      return h('svg')
     }
-  }
+  })
 }
 
-function install(Vue) {
+function install(Vue$$1) {
   for (var name in ctors) {
-    var component = create(chartXkcd, name);
-    component && Vue.component(name, component);
+    var component = create(name);
+    component && Vue$$1.component(name, component);
   }
 }
 

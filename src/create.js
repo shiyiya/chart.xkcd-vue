@@ -1,11 +1,15 @@
+import Vue from 'vue'
+import chartXkcd from 'chart.xkcd'
 import ctors from './constructors.js'
 
-export default function create(chartXkcd, name) {
+export default function create(name) {
   var ctorsName = ctors[name]
   if (!ctorsName) {
-    return null
+    // eslint-disable-next-line prefer-template
+    throw TypeError(name + ' component does not exist')
   }
-  return {
+
+  return Vue.extend({
     name: name,
     props: {
       config: { type: Object, required: true }
@@ -25,8 +29,8 @@ export default function create(chartXkcd, name) {
 
     // beforeDestroy: function () {},
 
-    render: function (createElement) {
-      return createElement('svg')
+    render: function (h) {
+      return h('svg')
     }
-  }
+  })
 }

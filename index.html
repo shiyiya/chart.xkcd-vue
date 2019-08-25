@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>documentation</title>
+    <title>chart.xkcd-vue documentation</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.xkcd@1.0.7/dist/chart.xkcd.min.js"></script>
     <script src="./dist/chart.xkcd-vue.min.js"></script>
@@ -110,6 +110,7 @@
 
       <h1>Use</h1>
       <p>Register components at the main entry.</p>
+      <p>Before you use it, you need to register components. There are <b>three ways</b> to register components</p>
 
       <h2>① Register all components</h2>
       <div>
@@ -129,6 +130,28 @@
   import { genComponent } from 'chart.xkcd-vue'
   Vue.component('chartxkcd-line', genComponent(chartXkcd, 'chartxkcd-line'))
       </code></pre>
+
+      <h2>③ Register in template (.vue)</h2>
+      <pre><code class="html regtemp">
+        <script>
+    document.querySelector('.regtemp').append(`
+    <template>
+       //...
+    <script>
+    import { genComponent } from 'chart.xkcd-vue'
+
+    export default {
+      // your code ...
+      components: {
+        'chartxkcd-line': genComponent('chartxkcd-line')
+      }
+      // your code ...
+    };
+    <\/script>
+  `)
+
+        </script>
+        </code></pre>
 
       <h2>Used in templates.</h2>
       <pre><code class="html temp">
@@ -180,7 +203,7 @@
           <input
             class="config"
             type="text"
-            value='{title:"Monthly income of an indie developer",xLabel:"Month",yLabel:"$ Dollors",width:900,data:{labels:["1","2","3","4","5","6","7","8","9","10"],datasets:[{label:"Plan",data:[30,70,200,300,500,800,1500,2900,5000,8000]},{label:"Reality",data:[0,1,30,70,80,100,50,80,40,150]}]}'
+            value="{title:'Monthly income of an indie developer',xLabel:'Month',yLabel:'$ Dollors',width:900,data:{labels:['1','2','3','4','5','6','7','8','9','10'],datasets:[{label:'Plan',data:[30,70,200,300,500,800,1500,2900,5000,8000]},{label:'Reality',data:[0,1,30,70,80,100,50,80,40,150]}]}}"
           />
           <pre><code class="html temp line">
               <script>
