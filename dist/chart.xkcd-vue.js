@@ -1,10 +1,9 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue'), require('chart.xkcd')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'vue', 'chart.xkcd'], factory) :
-  (global = global || self, factory(global.chartXkcdVue = {}, global.Vue, global.chartXkcd));
-}(this, function (exports, Vue, chartXkcd) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('chart.xkcd')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'chart.xkcd'], factory) :
+  (global = global || self, factory(global.chartXkcdVue = {}, global.chartXkcd));
+}(this, function (exports, chartXkcd) { 'use strict';
 
-  Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue;
   chartXkcd = chartXkcd && chartXkcd.hasOwnProperty('default') ? chartXkcd['default'] : chartXkcd;
 
   var ctors = {
@@ -21,7 +20,7 @@
       throw TypeError(name + ' component does not exist')
     }
 
-    return Vue.extend({
+    return {
       name: name,
       props: {
         config: { type: Object, required: true }
@@ -44,13 +43,13 @@
       render: function (h) {
         return h('svg')
       }
-    })
+    }
   }
 
-  function install(Vue$$1) {
+  function install(Vue) {
     for (var name in ctors) {
       var component = create(name);
-      component && Vue$$1.component(name, component);
+      component && Vue.component(name, component);
     }
   }
 

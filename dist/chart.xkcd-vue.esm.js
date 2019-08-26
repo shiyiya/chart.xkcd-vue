@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import chartXkcd from 'chart.xkcd';
 
 var ctors = {
@@ -15,7 +14,7 @@ function create(name) {
     throw TypeError(name + ' component does not exist')
   }
 
-  return Vue.extend({
+  return {
     name: name,
     props: {
       config: { type: Object, required: true }
@@ -38,13 +37,13 @@ function create(name) {
     render: function (h) {
       return h('svg')
     }
-  })
+  }
 }
 
-function install(Vue$$1) {
+function install(Vue) {
   for (var name in ctors) {
     var component = create(name);
-    component && Vue$$1.component(name, component);
+    component && Vue.component(name, component);
   }
 }
 

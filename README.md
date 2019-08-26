@@ -10,12 +10,12 @@
 
 Chart.xkcd is a chart library plots “sketchy”, “cartoony” or “hand-drawn” styled charts.
 
-Check out the [documentation](https://timqian.com/chart.xkcd/) for more instructions and links, or try out the [examples](./examples), or chat with us in [Slack](https://join.slack.com/t/t9tio/shared_invite/enQtNjgzMzkwMDM0NTE3LTE5ZTUzYjU4Y2I0YzRiZjNkYTkzMzE1ZmM0NDdmYzRlZmMxNGY1MzZlN2EwYjYyNWVlMWY0Nzk2MDBhNWZlY2I)
+Check out the [documentation](https://timqian.com/chart.xkcd/) for more instructions and links, or try out the [examples](./index.html), or chat with us in [Slack](https://join.slack.com/t/t9tio/shared_invite/enQtNjgzMzkwMDM0NTE3LTE5ZTUzYjU4Y2I0YzRiZjNkYTkzMzE1ZmM0NDdmYzRlZmMxNGY1MzZlN2EwYjYyNWVlMWY0Nzk2MDBhNWZlY2I)
 
 ## Requirements
 
 - Vue >= 2.0.0
-- chart.xkcd >= 1.0.7
+- chart.xkcd >= 1.0.8
 
 ## Installation
 
@@ -86,6 +86,6 @@ import chartXkcd from 'chart.xkcd'
 import { genComponent } from 'chart.xkcd-vue'
 
 // register -> { componentTag: chartxkcd-line, value: chartXkcd.Line }
-Vue.component('chartxkcd-line', genComponent(chartXkcd, 'chartxkcd-line'))
-Vue.component('chartxkcd-pie', genComponent(chartXkcd, 'chartxkcd-pie'))
+Vue.component('chartxkcd-line', genComponent('chartxkcd-line'))
+Vue.component('chartxkcd-pie', genComponent('chartxkcd-pie'))
 ```

@@ -67,7 +67,8 @@
         <script>
           document.write(
             marked(
-              "[chart.xkcd](https://timqian.com/chart.xkcd/) component for Vue. \n\n [chart.xkcd-vue's documentation](https://shiyiya.github.io/chart.xkcd-vue/)  [Github](https://github.com/shiyiya/chart.xkcd-vue)")
+              "[chart.xkcd](https://timqian.com/chart.xkcd/) component for Vue. \n\n [chart.xkcd-vue's documentation](https://shiyiya.github.io/chart.xkcd-vue/)  [Github](https://github.com/shiyiya/chart.xkcd-vue)"
+            )
           )
         </script>
       </p>
@@ -110,7 +111,10 @@
 
       <h1>Use</h1>
       <p>Register components at the main entry.</p>
-      <p>Before you use it, you need to register components. There are <b>three ways</b> to register components</p>
+      <p>
+        Before you use it, you need to register components. There are
+        <b>three ways</b> to register components
+      </p>
 
       <h2>① Register all components</h2>
       <div>
@@ -135,19 +139,43 @@
       <pre><code class="html regtemp">
         <script>
     document.querySelector('.regtemp').append(`
-    <template>
-       //...
-    <script>
-    import { genComponent } from 'chart.xkcd-vue'
+<template>
+  <chartxkcd-line :config="config"></chartxkcd-line>
+</template>
 
-    export default {
-      // your code ...
-      components: {
-        'chartxkcd-line': genComponent('chartxkcd-line')
+<script>
+import  {genComponent} from "chart.xkcd-vue";
+
+
+export default {
+  name: "app",
+  data() {
+    return {
+      config: {
+        title: "Monthly income of an indie developer",
+        xLabel: "Month",
+        yLabel: "$ Dollors",
+        data: {
+          labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+          datasets: [
+            {
+              label: "Plan",
+              data: [30, 70, 200, 300, 500, 800, 1500, 2900, 5000, 8000]
+            },
+            {
+              label: "Reality",
+              data: [0, 1, 30, 70, 80, 100, 50, 80, 40, 150]
+            }
+          ]
+        }
       }
-      // your code ...
     };
-    <\/script>
+  },
+  components: {
+    "chartxkcd-line": genComponent("chartxkcd-line")
+  }
+};
+<\/script>
   `)
 
         </script>
@@ -233,8 +261,16 @@
 
       <div class="comp">
         <h3 class="marked">chartxkcd-xy</h3>
+        <p>
+          XY chart is used to plot points by specifing there XY coordinates.
+        </p>
+        <p>You can also plot XY line chart by connecting the points.</p>
         <div class="view">
           <chartxkcd-xy :config="xyConfig"></chartxkcd-xy>
+        </div>
+        <p>Another example of XY chart: XY line chart with timeFormat</p>
+        <div class="view">
+          <chartxkcd-xy :config="xyConfigTime"></chartxkcd-xy>
         </div>
         <div class="opt">
           <h3>code</h3>
@@ -243,6 +279,12 @@
             class="config"
             type="text"
             value="{title:'Pokemon farms',xLabel:'Coodinate',yLabel:'Count',data:{datasets:[{label:'Pikachu',data:[{x:3,y:10},{x:4,y:122},{x:10,y:100},{x:1,y:2},{x:2,y:4}]},{label:'Squirtle',data:[{x:3,y:122},{x:4,y:212},{x:-3,y:100},{x:1,y:1},{x:1.5,y:12}]}]}"
+          />
+          config with timeFormat:
+          <input
+            class="config"
+            type="text"
+            value="{title:'Github star history',xLabel:'Month',yLabel:'Stars abc',data:{datasets:[{label:'timqian/chart.xkcd',data:[{x:'2015-03-01',y:0},{x:'2015-04-01',y:2},{x:'2015-05-01',y:4},{x:'2015-06-01',y:10},{x:'2015-07-01',y:122}],},{label:'timqian/star-history',data:[{x:'2015-01-01',y:0},{x:'2015-03-01',y:1},{x:'2015-04-01',y:12},{x:'2015-05-01',y:122},{x:'2015-06-01',y:212}],}],},options:{xTickCount:3,yTickCount:4,legendPosition:chartXkcd.config.positionType.upLeft,showLine:true,timeFormat:'MM/DD/YYYY',dotSize:0.5,}}"
           />
           <pre><code class="html temp xy">
                 <script>
@@ -425,6 +467,43 @@
               showLine: false,
               timeFormat: undefined,
               dotSize: 1
+            }
+          },
+          xyConfigTime: {
+            title: 'Github star history',
+            xLabel: 'Month',
+            yLabel: 'Stars abc',
+            data: {
+              datasets: [
+                {
+                  label: 'timqian/chart.xkcd',
+                  data: [
+                    { x: '2015-03-01', y: 0 },
+                    { x: '2015-04-01', y: 2 },
+                    { x: '2015-05-01', y: 4 },
+                    { x: '2015-06-01', y: 10 },
+                    { x: '2015-07-01', y: 122 }
+                  ]
+                },
+                {
+                  label: 'timqian/star-history',
+                  data: [
+                    { x: '2015-01-01', y: 0 },
+                    { x: '2015-03-01', y: 1 },
+                    { x: '2015-04-01', y: 12 },
+                    { x: '2015-05-01', y: 122 },
+                    { x: '2015-06-01', y: 212 }
+                  ]
+                }
+              ]
+            },
+            options: {
+              xTickCount: 3,
+              yTickCount: 4,
+              legendPosition: chartXkcd.config.positionType.upLeft,
+              showLine: true,
+              timeFormat: 'MM/DD/YYYY',
+              dotSize: 0.5
             }
           },
           barConfig: {

@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import chartXkcd from 'chart.xkcd'
 import ctors from './constructors.js'
 
@@ -9,7 +8,7 @@ export default function create(name) {
     throw TypeError(name + ' component does not exist')
   }
 
-  return Vue.extend({
+  return {
     name: name,
     props: {
       config: { type: Object, required: true }
@@ -32,5 +31,5 @@ export default function create(name) {
     render: function (h) {
       return h('svg')
     }
-  })
+  }
 }

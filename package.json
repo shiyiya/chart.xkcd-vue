@@ -1,9 +1,10 @@
 {
   "name": "chart.xkcd-vue",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "chart.xkcd component for Vue",
-  "main": "dist/chart.xkcd-vue.js",
-  "module": "src/chart.xkcd-vue.esm.js",
+  "main": "src/index.js",
+  "module": "dist/chart.xkcd-vue.esm.js",
+  "types": "type/index.d.ts",
   "files": [
     "dist",
     "src"
@@ -40,12 +41,12 @@
   },
   "homepage": "https://github.com/shiyiya/chart.xkcd-vue",
   "peerDependencies": {
-    "chart.xkcd": ">=1.0.7",
+    "chart.xkcd": ">=1.0.8",
     "vue": ">=2.0.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chart.xkcd": "^1.0.7",
+    "chart.xkcd": "^1.0.8",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
