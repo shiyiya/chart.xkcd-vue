@@ -6,11 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>chart.xkcd-vue documentation</title>
+  <meta name="description" content="chart.xkcd component for Vue" />
+  <meta name="keywords" content="chart.xkcd,chart.xkcd-vue,chartXkcdVue,chart" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117481437-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-117481437-2');
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.xkcd@1.0.7/dist/chart.xkcd.min.js"></script>
-  <script src="./dist/chart.xkcd-vue.min.js"></script>
+  <script src="./dist/chart.xkcd-vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/default.min.css" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/default.min.css" />
   <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
   <script>
     hljs.initHighlightingOnLoad()
@@ -398,6 +409,7 @@ export default {
       </div>
     </div>
   </div>
+
   <script>
     var app = new Vue({
       el: '#root',

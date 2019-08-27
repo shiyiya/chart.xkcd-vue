@@ -18,10 +18,8 @@
     "minify": "uglifyjs  dist/chart.xkcd-vue.js -m -o dist/chart.xkcd-vue.min.js",
     "build": "npm run bundle && npm run minify && npm run bundle:esm",
     "dev": "npm run bundle -- -w",
-    "preversion": "npm test",
-    "version": "npm run build && git add -A dist",
-    "add": "npm run build && git add .",
-    "postversion": "git push origin master && git push --tags && npm publish"
+    "add": "npm run build && git add -A",
+    "postversion": "git push origin master && npm publish"
   },
   "repository": {
     "type": "git",
@@ -39,14 +37,14 @@
   "bugs": {
     "url": "https://github.com/shiyiya/chart.xkcd-vue/issues"
   },
-  "homepage": "https://github.com/shiyiya/chart.xkcd-vue",
+  "homepage": "https://shiyiya.github.io/chart.xkcd-vue/",
   "peerDependencies": {
     "chart.xkcd": ">=1.0.8",
     "vue": ">=2.0.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chart.xkcd": "^1.0.8",
+    "chart.xkcd": "^1.0.9",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
