@@ -1,5 +1,8 @@
-// TODO
 
+// type componentName = 'chartxkcd-line' | 'chartxkcd-bar' | 'chartxkcd-pie' | 'chartxkcd-xy'
 
-// declare namespace chartXkcdVue { }
+// export declare namespace chartXkcdVue {
+//     function genComponent(name: componentName): object
+// }
+
 

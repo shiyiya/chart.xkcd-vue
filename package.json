@@ -4,7 +4,7 @@
   "description": "chart.xkcd component for Vue",
   "main": "src/index.js",
   "module": "dist/chart.xkcd-vue.esm.js",
-  "types": "type/index.d.ts",
+  "typings": "type/index.d.ts",
   "files": [
     "dist",
     "src"
@@ -16,7 +16,8 @@
     "bundle:esm": "rollup src/index.js -f esm -n chartXkcdVue -g chartXkcdVue:chartXkcdVue -e chart.xkcd -o dist/chart.xkcd-vue.esm.js",
     "bundle": "rollup src/index.js -f umd -n chartXkcdVue -g chartXkcdVue:chartXkcdVue -e chart.xkcd -o dist/chart.xkcd-vue.js",
     "minify": "uglifyjs  dist/chart.xkcd-vue.js -m -o dist/chart.xkcd-vue.min.js",
-    "build": "npm run bundle && npm run minify && npm run bundle:esm",
+    "build": "npm run bundle && npm run minify && npm run bundle:esm && npm run build:doc",
+    "build:doc":"node ./doc.js",
     "dev": "npm run bundle -- -w",
     "add": "npm run build && git add -A",
     "postversion": "git push origin master && npm publish"
@@ -58,5 +59,8 @@
     "rollup": "^0.68.2",
     "rollup-plugin-istanbul": "^2.0.1",
     "vue": "^2.5.22"
+  },
+  "dependencies": {
+    "marked": "^0.7.0"
   }
 }

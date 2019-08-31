@@ -12,4 +12,15 @@ if (typeof window !== 'undefined' && window.Vue && window.chartXkcd) {
   install(window.Vue)
 }
 
-export { create as genComponent }
+var chartXKCDLine = create('chartxkcd-line')
+var chartXKCDBar = create('chartxkcd-bar')
+var chartXKCDPie = create('chartxkcd-pie')
+var chartXKCDXY = create('chartxkcd-xy')
+
+export {
+  create as genComponent,
+  chartXKCDLine,
+  chartXKCDBar,
+  chartXKCDPie,
+  chartXKCDXY
+}

@@ -57,8 +57,17 @@
     install(window.Vue);
   }
 
+  var chartXKCDLine = create('chartxkcd-line');
+  var chartXKCDBar = create('chartxkcd-bar');
+  var chartXKCDPie = create('chartxkcd-pie');
+  var chartXKCDXY = create('chartxkcd-xy');
+
   exports.default = install;
   exports.genComponent = create;
+  exports.chartXKCDLine = chartXKCDLine;
+  exports.chartXKCDBar = chartXKCDBar;
+  exports.chartXKCDPie = chartXKCDPie;
+  exports.chartXKCDXY = chartXKCDXY;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

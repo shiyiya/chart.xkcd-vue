@@ -18,7 +18,7 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.xkcd@1.0.7/dist/chart.xkcd.min.js"></script>
-  <script src="./dist/chart.xkcd-vue.js"></script>
+  <script src="../dist/chart.xkcd-vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/default.min.css" />
@@ -81,163 +81,81 @@
 
 <body>
   <div id="root">
-    <h1>chart.xkcd-vue</h1>
-    <p>
-      <script>
-        document.write(
-          marked(
-            "[chart.xkcd](https://timqian.com/chart.xkcd/) component for Vue. \n\n [chart.xkcd-vue's documentation](https://shiyiya.github.io/chart.xkcd-vue/)  [Github](https://github.com/shiyiya/chart.xkcd-vue)"
-          )
-        )
-      </script>
-    </p>
+    <!-- readme start --><h1 id="chartxkcd-vue">chart.xkcd-vue</h1>
+<p><a href="https://shiyiya.github.io/chart.xkcd-vue/"><img src="https://raw.githubusercontent.com/timqian/images/master/20190819131226.gif" alt=""></a></p>
+<p><a href="https://timqian.com/chart.xkcd/">chart.xkcd</a> component for Vue.</p>
+<p>Read the <a href="https://shiyiya.github.io/chart.xkcd-vue/">documentation</a> for more information.</p>
+<p><a href="https://github.com/shiyiya/chart.xkcd-vue">Github</a> | <a href="https://shiyiya.github.io/chart.xkcd-vue/">documentation</a></p>
+<h2 id="whats-chartxkcd">what&#39;s chart.xkcd?</h2>
+<p>Chart.xkcd is a chart library plots “sketchy”, “cartoony” or “hand-drawn” styled charts. Check out the Check out the <a href="https://timqian.com/chart.xkcd/">documentation</a> for more instructions and links.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Vue &gt;= 2.0.0</li>
+<li>chart.xkcd &gt;= 1.0.8</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p><strong>You must install chart.xkcd at first.</strong></p>
+<pre><code class="language-shell"> npm i -S chart.xkcd</code></pre>
+<h2 id="①-install-from-npm">① Install from NPM</h2>
+<pre><code class="language-shell"> npm i -S chart.xkcd-vue</code></pre>
+<h2 id="②-install-from-script">② Install from <code>&lt;script&gt;</code></h2>
+<p>When chart.xkcd-vue is included by <code>&lt;script&gt;</code>, it will be installed automatically if <code>window.Vue</code> and <code>window.chartXkcd</code> exists, ohterwise you should to install it manually by calling <code>Vue.use(window.chartXkcdVue[&quot;default&quot;);</code></p>
+<h1 id="use">Use</h1>
+<p>Before you use it, you need to register components.
+There are <strong>two ways</strong> to register components</p>
+<h2 id="①-register-all-components">① Register all components</h2>
+<p>Register components at the main entry.
+<strong>All must be prefixed with <code>chartxkcd-</code></strong></p>
+<pre><code class="language-js">import Vue from &#39;vue&#39;
+import chartXkcdVue from &#39;chart.xkcd-vue&#39;
 
-    <h1>what's chart.xkcd?</h1>
-    <script>
-      document.write(
-        marked(
-          '[![](https://raw.githubusercontent.com/timqian/images/master/20190819131226.gif)](https://timqian.com/chart.xkcd/)' +
-          ' Chart.xkcd is a chart library plots “sketchy”, “cartoony” or “hand-drawn” styled charts. Check out the' +
-          'Check out the [documentation](https://timqian.com/chart.xkcd/) for more instructions and links, or try out the [examples](./examples), or chat with us in [Slack](https://join.slack.com/t/t9tio/shared_invite/enQtNjgzMzkwMDM0NTE3LTE5ZTUzYjU4Y2I0YzRiZjNkYTkzMzE1ZmM0NDdmYzRlZmMxNGY1MzZlN2EwYjYyNWVlMWY0Nzk2MDBhNWZlY2I)'
-        )
-      )
-    </script>
+// ↓↓↓ will auto register all chart.xkcd component.
+Vue.use(chartXkcdVue)</code></pre>
+<h2 id="②-register-a-single-component">② Register a single component</h2>
+<p>Register components at the main entry.</p>
+<pre><code class="language-js">import Vue from &#39;vue&#39;
+import chartXkcd from &#39;chart.xkcd&#39;
+import { chartXKCDLine } from &#39;chart.xkcd-vue&#39;
+Vue.component(&#39;chartxkcd-line&#39;, chartXKCDLine)</code></pre>
+<h2 id="using-components-in-templates">Using components in templates</h2>
+<p>If you register a component at the entrance, you can use it as follows</p>
+<pre><code class="language-html">&lt;template&gt;
+  &lt;chartxkcd-line :config=&quot;config&quot;&gt;&lt;/chartxkcd-line&gt;
+&lt;/template&gt;
 
-    <b>
-      You can find the documentation for the chats configurations in the
-      <a href="https://timqian.com/chart.xkcd/" rel="nofollow">
-        official library page</a>.
-    </b>
+&lt;script&gt;
+  import { chartXKCDLine } from &#39;chart.xkcd-vue&#39;
 
-    <h1>Install</h1>
-
-    <h2>You must install chart.xkcd.</h2>
-    <pre><code class="shell">npm i -S chart.xkcd</code></pre>
-
-    <h2>① NPM</h2>
-    <pre><code class="shell">npm i -S chart.xkcd-vue</code></pre>
-
-    <h2>② script</h2>
-    <p>You can install chart.xkcd via script tag in HTML or via npm</p>
-    <script>
-      document.write(
-        marked(
-          'When chart.xkcd-vue is included by `<script>`, it will be installed automatically if `window.Vue` and `window.chartXkcd` exists, ohterwise you should to install it manually by calling `Vue.use(window.chartXkcdVue["default");`'
-        )
-      )
-    </script>
-
-    <h1>Use</h1>
-    <p>Register components at the main entry.</p>
-    <p>
-      Before you use it, you need to register components. There are
-      <b>three ways</b> to register components
-    </p>
-
-    <h2>① Register all components</h2>
-    <div>
-      <pre><code class="js">
-   import Vue from 'vue'
-   import chartXkcdVue from 'chart.xkcd-vue'
-
-   // ↓↓↓ will auto register all chart.xkcd component.
-   Vue.use(chartXkcdVue)
-          </code></pre>
-    </div>
-
-    <h2>② Register a single component</h2>
-    <pre><code class="js">
-  import Vue from 'vue'
-  import chartXkcd from 'chart.xkcd'
-  import { genComponent } from 'chart.xkcd-vue'
-  Vue.component('chartxkcd-line', genComponent('chartxkcd-line'))
-      </code></pre>
-
-    <h2>③ Register in template (.vue)</h2>
-    <pre><code class="html regtemp">
-        <script>
-          document.querySelector('.regtemp').append(`
-<template>
-  <chartxkcd-line :config="config"></chartxkcd-line>
-</template>
-
-<script>
-import  {genComponent} from "chart.xkcd-vue";
-
-
-export default {
-  name: "app",
-  data() {
-    return {
-      config: {
-        title: "Monthly income of an indie developer",
-        xLabel: "Month",
-        yLabel: "$ Dollors",
-        data: {
-          labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-          datasets: [
-            {
-              label: "Plan",
-              data: [30, 70, 200, 300, 500, 800, 1500, 2900, 5000, 8000]
-            },
-            {
-              label: "Reality",
-              data: [0, 1, 30, 70, 80, 100, 50, 80, 40, 150]
-            }
-          ]
-        }
-      }
-    };
-  },
-  components: {
-    "chartxkcd-line": genComponent("chartxkcd-line")
-  }
-};
-<\/script>
-  `)
-
-        </script>
-        </code></pre>
-
-    <h2>Used in templates.</h2>
-    <pre><code class="html temp">
-      <script>
-        document.querySelector('.temp').append(`
-  <template>
-    <div id="app">
-      <chartxkcd-line :config="config"></chartxkcd-line>
-    </div>
-  </template>
-  <script>
   export default {
-    name: "app",
+    name: &#39;app&#39;,
     data() {
       return {
         config: {
-          title: "Monthly income of an indie developer",
-          xLabel: "Month",
-          yLabel: "$ Dollors",
+          title: &#39;Monthly income of an indie developer&#39;,
+          xLabel: &#39;Month&#39;,
+          yLabel: &#39;$ Dollors&#39;,
           data: {
-            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+            labels: [&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;, &#39;10&#39;],
             datasets: [
               {
-                label: "Plan",
+                label: &#39;Plan&#39;,
                 data: [30, 70, 200, 300, 500, 800, 1500, 2900, 5000, 8000]
               },
               {
-                label: "Reality",
+                label: &#39;Reality&#39;,
                 data: [0, 1, 30, 70, 80, 100, 50, 80, 40, 150]
               }
             ]
           }
-        },
-  };
-  <\/script>
-`)
-
-      </script>
-      </code></pre>
-
+        }
+      }
+    },
+    components: {
+      &#39;chartxkcd-line&#39;: chartXKCDLine
+    }
+  }
+&lt;/script&gt;</code></pre>
+<!-- readme end -->
     <div class="comp">
       <h3 class="marked">chartxkcd-line</h3>
       <div class="view">
@@ -409,130 +327,131 @@ export default {
       </div>
     </div>
   </div>
-
-  <script>
-    var app = new Vue({
-      el: '#root',
+ <!-- js start -->
+<script>
+ new Vue({
+  el: '#root',
+  data: {
+    lineConfig: {
+      title: 'Monthly income of an indie developer',
+      xLabel: 'Month',
+      yLabel: '$ Dollors',
+      width: 900,
       data: {
-        lineConfig: {
-          title: 'Monthly income of an indie developer',
-          xLabel: 'Month',
-          yLabel: '$ Dollors',
-          width: 900,
-          data: {
-            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-            datasets: [
-              {
-                label: 'Plan',
-                data: [30, 70, 200, 300, 500, 800, 1500, 2900, 5000, 8000]
-              },
-              {
-                label: 'Reality',
-                data: [0, 1, 30, 70, 80, 100, 50, 80, 40, 150]
-              }
-            ]
-          }
-        },
-        xyConfig: {
-          title: 'Pokemon farms', //optional
-          xLabel: 'Coodinate', //optional
-          yLabel: 'Count', //optional
-          data: {
-            datasets: [
-              {
-                label: 'Pikachu',
-                data: [
-                  { x: 3, y: 10 },
-                  { x: 4, y: 122 },
-                  { x: 10, y: 100 },
-                  { x: 1, y: 2 },
-                  { x: 2, y: 4 }
-                ]
-              },
-              {
-                label: 'Squirtle',
-                data: [
-                  { x: 3, y: 122 },
-                  { x: 4, y: 212 },
-                  { x: -3, y: 100 },
-                  { x: 1, y: 1 },
-                  { x: 1.5, y: 12 }
-                ]
-              }
-            ]
+        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+        datasets: [
+          {
+            label: 'Plan',
+            data: [30, 70, 200, 300, 500, 800, 1500, 2900, 5000, 8000]
           },
-          options: {
-            //optional
-            xTickCount: 5,
-            yTickCount: 5,
-            legendPosition: chartXkcd.config.positionType.upRight,
-            showLine: false,
-            timeFormat: undefined,
-            dotSize: 1
+          {
+            label: 'Reality',
+            data: [0, 1, 30, 70, 80, 100, 50, 80, 40, 150]
           }
-        },
-        xyConfigTime: {
-          title: 'Github star history',
-          xLabel: 'Month',
-          yLabel: 'Stars abc',
-          data: {
-            datasets: [
-              {
-                label: 'timqian/chart.xkcd',
-                data: [
-                  { x: '2015-03-01', y: 0 },
-                  { x: '2015-04-01', y: 2 },
-                  { x: '2015-05-01', y: 4 },
-                  { x: '2015-06-01', y: 10 },
-                  { x: '2015-07-01', y: 122 }
-                ]
-              },
-              {
-                label: 'timqian/star-history',
-                data: [
-                  { x: '2015-01-01', y: 0 },
-                  { x: '2015-03-01', y: 1 },
-                  { x: '2015-04-01', y: 12 },
-                  { x: '2015-05-01', y: 122 },
-                  { x: '2015-06-01', y: 212 }
-                ]
-              }
-            ]
-          },
-          options: {
-            xTickCount: 3,
-            yTickCount: 4,
-            legendPosition: chartXkcd.config.positionType.upLeft,
-            showLine: true,
-            timeFormat: 'MM/DD/YYYY',
-            dotSize: 0.5
-          }
-        },
-        barConfig: {
-          data: {
-            labels: ['github stars', 'patrons'],
-            datasets: [
-              {
-                // label: 'Battle',
-                data: [100, 2]
-              }
-            ]
-          }
-        },
-        pieConfig: {
-          title: 'What Tim made of',
-          data: {
-            labels: ['a', 'b', 'e', 'f', 'g'],
-            datasets: [
-              {
-                data: [500, 200, 80, 90, 100]
-              }
-            ]
-          }
-        }
+        ]
       }
-    })
-  </script>
+    },
+    xyConfig: {
+      title: 'Pokemon farms', // optional
+      xLabel: 'Coodinate', // optional
+      yLabel: 'Count', // optional
+      data: {
+        datasets: [
+          {
+            label: 'Pikachu',
+            data: [
+              { x: 3, y: 10 },
+              { x: 4, y: 122 },
+              { x: 10, y: 100 },
+              { x: 1, y: 2 },
+              { x: 2, y: 4 }
+            ]
+          },
+          {
+            label: 'Squirtle',
+            data: [
+              { x: 3, y: 122 },
+              { x: 4, y: 212 },
+              { x: -3, y: 100 },
+              { x: 1, y: 1 },
+              { x: 1.5, y: 12 }
+            ]
+          }
+        ]
+      },
+      options: {
+        // optional
+        xTickCount: 5,
+        yTickCount: 5,
+        legendPosition: chartXkcd.config.positionType.upRight,
+        showLine: false,
+        timeFormat: undefined,
+        dotSize: 1
+      }
+    },
+    xyConfigTime: {
+      title: 'Github star history',
+      xLabel: 'Month',
+      yLabel: 'Stars abc',
+      data: {
+        datasets: [
+          {
+            label: 'timqian/chart.xkcd',
+            data: [
+              { x: '2015-03-01', y: 0 },
+              { x: '2015-04-01', y: 2 },
+              { x: '2015-05-01', y: 4 },
+              { x: '2015-06-01', y: 10 },
+              { x: '2015-07-01', y: 122 }
+            ]
+          },
+          {
+            label: 'timqian/star-history',
+            data: [
+              { x: '2015-01-01', y: 0 },
+              { x: '2015-03-01', y: 1 },
+              { x: '2015-04-01', y: 12 },
+              { x: '2015-05-01', y: 122 },
+              { x: '2015-06-01', y: 212 }
+            ]
+          }
+        ]
+      },
+      options: {
+        xTickCount: 3,
+        yTickCount: 4,
+        legendPosition: chartXkcd.config.positionType.upLeft,
+        showLine: true,
+        timeFormat: 'MM/DD/YYYY',
+        dotSize: 0.5
+      }
+    },
+    barConfig: {
+      data: {
+        labels: ['github stars', 'patrons'],
+        datasets: [
+          {
+            // label: 'Battle',
+            data: [100, 2]
+          }
+        ]
+      }
+    },
+    pieConfig: {
+      title: 'What Tim made of',
+      data: {
+        labels: ['a', 'b', 'e', 'f', 'g'],
+        datasets: [
+          {
+            data: [500, 200, 80, 90, 100]
+          }
+        ]
+      }
+    }
+  }
+})
+</script>
+ <!-- js end -->
 </body>
 
 </html>
