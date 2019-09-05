@@ -2,8 +2,8 @@ var fs = require('fs')
 var path = require('path')
 var marked = require('marked')
 
-var mdpath = path.resolve('./README.md')
-var docpath = path.resolve('../index.html')
+var mdpath = path.resolve(__dirname, '../README.md')
+var docpath = path.resolve(__dirname, './index.html')
 
 var mdRes = fs.readFileSync(mdpath).toString()
 var odcRes = fs.readFileSync(docpath).toString()
@@ -17,14 +17,16 @@ var newDoc = odcRes.replace(REREG, function () {
 
 var jss = `
 <script>
- new Vue({
+Vue.filter('json', function (value){
+  return JSON.stringify(value)
+})
+new Vue({
   el: '#root',
   data: {
     lineConfig: {
-      title: 'Monthly income of an indie developer',
-      xLabel: 'Month',
-      yLabel: '$ Dollors',
-      width: 900,
+      title: 'Monthly income of an indie developer', // optional
+      xLabel: 'Month', // optional
+      yLabel: '$ Dollors', // optional
       data: {
         labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
         datasets: [
@@ -37,6 +39,11 @@ var jss = `
             data: [0, 1, 30, 70, 80, 100, 50, 80, 40, 150]
           }
         ]
+      },
+      options: {
+        // optional
+        yTickCount: 3,
+        legendPosition: chartXkcd.config.positionType.upLeft
       }
     },
     xyConfig: {
@@ -115,31 +122,39 @@ var jss = `
       }
     },
     barConfig: {
+      title: 'github stars VS patron number', // optional
+      // xLabel: '', // optional
+      // yLabel: '', // optional
       data: {
         labels: ['github stars', 'patrons'],
         datasets: [
           {
-            // label: 'Battle',
             data: [100, 2]
           }
         ]
+      },
+      options: {
+        // optional
+        yTickCount: 2
       }
     },
     pieConfig: {
-      title: 'What Tim made of',
+      title: 'What Tim made of', // optional
       data: {
         labels: ['a', 'b', 'e', 'f', 'g'],
-        datasets: [
-          {
-            data: [500, 200, 80, 90, 100]
-          }
-        ]
-      }
-    }
+        datasets: [{
+          data: [500, 200, 80, 90, 100],
+        }],
+      },
+      options: { // optional
+        innerRadius: 0.5,
+        legendPosition: chartXkcd.config.positionType.upRight,
+      },
+    },
   }
 })
 </script>
- `
+`
 newDoc = newDoc.replace(JSREG, function () {
   return `<!-- js start -->${jss}<!-- js end -->`
 })

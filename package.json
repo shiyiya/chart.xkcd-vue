@@ -17,10 +17,11 @@
     "bundle": "rollup src/index.js -f umd -n chartXkcdVue -g chartXkcdVue:chartXkcdVue -e chart.xkcd -o dist/chart.xkcd-vue.js",
     "minify": "uglifyjs  dist/chart.xkcd-vue.js -m -o dist/chart.xkcd-vue.min.js",
     "build": "npm run bundle && npm run minify && npm run bundle:esm && npm run build:doc",
-    "build:doc":"node ./doc.js",
-    "dev": "npm run bundle -- -w",
+    "site": "rollup src/index.js -f umd -n chartXkcdVue -g chartXkcdVue:chartXkcdVue -e chart.xkcd -o docs/chart.xkcd-vue.js",
+    "build:doc": "node ./docs/doc.js",
+    "dev": "npm run site -- -w",
     "add": "npm run build && git add -A",
-    "postversion": "git push origin master && npm publish"
+    "perversion": "git push origin master && npm publish"
   },
   "repository": {
     "type": "git",
@@ -45,22 +46,20 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chart.xkcd": "^1.0.9",
+    "chart.xkcd": "^1.1.2",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
-    "karma": "^4.0.0",
+    "karma": "^4.3.0",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-coverage": "^1.1.2",
     "karma-mocha": "^1.3.0",
     "karma-rollup-preprocessor": "^6.1.2",
+    "marked": "^0.7.0",
     "mocha": "^5.2.0",
     "rollup": "^0.68.2",
     "rollup-plugin-istanbul": "^2.0.1",
     "vue": "^2.5.22"
-  },
-  "dependencies": {
-    "marked": "^0.7.0"
   }
 }

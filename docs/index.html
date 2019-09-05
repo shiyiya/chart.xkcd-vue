@@ -17,8 +17,8 @@
     gtag('config', 'UA-117481437-2');
   </script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.xkcd@1.0.7/dist/chart.xkcd.min.js"></script>
-  <script src="../dist/chart.xkcd-vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.xkcd@1.1/dist/chart.xkcd.min.js"></script>
+  <script src="./chart.xkcd-vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/default.min.css" />
@@ -164,8 +164,7 @@ Vue.component(&#39;chartxkcd-line&#39;, chartXKCDLine)</code></pre>
       <div class="opt">
         <h3>code</h3>
         config:
-        <input class="config" type="text"
-          value="{title:'Monthly income of an indie developer',xLabel:'Month',yLabel:'$ Dollors',width:900,data:{labels:['1','2','3','4','5','6','7','8','9','10'],datasets:[{label:'Plan',data:[30,70,200,300,500,800,1500,2900,5000,8000]},{label:'Reality',data:[0,1,30,70,80,100,50,80,40,150]}]}}" />
+        <input class="config" type="text" :value="lineConfig | json" />
         <pre><code class="html temp line">
               <script>
                 document.querySelector('.line').innerText = '<chartxkcd-line :config="config"></chartxkcd-line>'
@@ -208,11 +207,9 @@ Vue.component(&#39;chartxkcd-line&#39;, chartXKCDLine)</code></pre>
       <div class="opt">
         <h3>code</h3>
         config:
-        <input class="config" type="text"
-          value="{title:'Pokemon farms',xLabel:'Coodinate',yLabel:'Count',data:{datasets:[{label:'Pikachu',data:[{x:3,y:10},{x:4,y:122},{x:10,y:100},{x:1,y:2},{x:2,y:4}]},{label:'Squirtle',data:[{x:3,y:122},{x:4,y:212},{x:-3,y:100},{x:1,y:1},{x:1.5,y:12}]}]}" />
+        <input class="config" type="text" :value="xyConfig | json" />
         config with timeFormat:
-        <input class="config" type="text"
-          value="{title:'Github star history',xLabel:'Month',yLabel:'Stars abc',data:{datasets:[{label:'timqian/chart.xkcd',data:[{x:'2015-03-01',y:0},{x:'2015-04-01',y:2},{x:'2015-05-01',y:4},{x:'2015-06-01',y:10},{x:'2015-07-01',y:122}],},{label:'timqian/star-history',data:[{x:'2015-01-01',y:0},{x:'2015-03-01',y:1},{x:'2015-04-01',y:12},{x:'2015-05-01',y:122},{x:'2015-06-01',y:212}],}],},options:{xTickCount:3,yTickCount:4,legendPosition:chartXkcd.config.positionType.upLeft,showLine:true,timeFormat:'MM/DD/YYYY',dotSize:0.5,}}" />
+        <input class="config" type="text" :value="xyConfigTime | json" />
         <pre><code class="html temp xy">
                 <script>
                   document.querySelector('.xy').innerText = '<chartxkcd-xy :config="config"></chartxkcd-xy>'
@@ -267,8 +264,7 @@ Vue.component(&#39;chartxkcd-line&#39;, chartXKCDLine)</code></pre>
       <div class="opt">
         <h3>code</h3>
         config:
-        <input class="config" type="text"
-          value="{data:{labels:['github stars','patrons'],datasets:[{data:[100,2]}]}}" />
+        <input class="config" type="text" :value="barConfig | json" />
         <pre><code class="html temp bar">
                 <script>
                   document.querySelector('.bar').innerText = '<chartxkcd-bar :config="config"></chartxkcd-bar>'
@@ -292,8 +288,7 @@ Vue.component(&#39;chartxkcd-line&#39;, chartXKCDLine)</code></pre>
       </div>
       <div class="opt">
         config:
-        <input class="config" type="text"
-          value="{title:'What Tim made of',data:{labels:['a','b','e','f','g'],datasets:[{data:[500,200,80,90,100]}]}}" />
+        <input class="config" type="text" :value="pieConfig | json" />
         <pre><code class="html temp pie">
                 <script>
                   document.querySelector('.pie').innerText = '<chartxkcd-pie :config="config"></chartxkcd-pie>'
@@ -327,16 +322,18 @@ Vue.component(&#39;chartxkcd-line&#39;, chartXKCDLine)</code></pre>
       </div>
     </div>
   </div>
- <!-- js start -->
+  <!-- js start -->
 <script>
- new Vue({
+Vue.filter('json', function (value){
+  return JSON.stringify(value)
+})
+new Vue({
   el: '#root',
   data: {
     lineConfig: {
-      title: 'Monthly income of an indie developer',
-      xLabel: 'Month',
-      yLabel: '$ Dollors',
-      width: 900,
+      title: 'Monthly income of an indie developer', // optional
+      xLabel: 'Month', // optional
+      yLabel: '$ Dollors', // optional
       data: {
         labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
         datasets: [
@@ -349,6 +346,11 @@ Vue.component(&#39;chartxkcd-line&#39;, chartXKCDLine)</code></pre>
             data: [0, 1, 30, 70, 80, 100, 50, 80, 40, 150]
           }
         ]
+      },
+      options: {
+        // optional
+        yTickCount: 3,
+        legendPosition: chartXkcd.config.positionType.upLeft
       }
     },
     xyConfig: {
@@ -427,31 +429,39 @@ Vue.component(&#39;chartxkcd-line&#39;, chartXKCDLine)</code></pre>
       }
     },
     barConfig: {
+      title: 'github stars VS patron number', // optional
+      // xLabel: '', // optional
+      // yLabel: '', // optional
       data: {
         labels: ['github stars', 'patrons'],
         datasets: [
           {
-            // label: 'Battle',
             data: [100, 2]
           }
         ]
+      },
+      options: {
+        // optional
+        yTickCount: 2
       }
     },
     pieConfig: {
-      title: 'What Tim made of',
+      title: 'What Tim made of', // optional
       data: {
         labels: ['a', 'b', 'e', 'f', 'g'],
-        datasets: [
-          {
-            data: [500, 200, 80, 90, 100]
-          }
-        ]
-      }
-    }
+        datasets: [{
+          data: [500, 200, 80, 90, 100],
+        }],
+      },
+      options: { // optional
+        innerRadius: 0.5,
+        legendPosition: chartXkcd.config.positionType.upRight,
+      },
+    },
   }
 })
 </script>
- <!-- js end -->
+<!-- js end -->
 </body>
 
 </html>

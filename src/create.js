@@ -1,6 +1,13 @@
 import chartXkcd from 'chart.xkcd'
 import ctors from './constructors.js'
 
+/**
+ * gen Vue Component
+ *
+ * @export
+ * @param {keyof ctors} name
+ * @returns
+ */
 export default function create(name) {
   var ctorsName = ctors[name]
   if (!ctorsName) {
