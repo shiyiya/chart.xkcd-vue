@@ -3,10 +3,18 @@ import chartXkcd from 'chart.xkcd';
 var ctors = {
   'chartxkcd-line': 'Line',
   'chartxkcd-bar': 'Bar',
+  'chartxkcd-xy': 'XY',
   'chartxkcd-pie': 'Pie',
-  'chartxkcd-xy': 'XY'
+  'chartxkcd-radar': 'Radar'
 };
 
+/**
+ * gen Vue Component
+ *
+ * @export
+ * @param {keyof ctors} name
+ * @returns
+ */
 function create(name) {
   var ctorsName = ctors[name];
   if (!ctorsName) {
@@ -53,8 +61,9 @@ if (typeof window !== 'undefined' && window.Vue && window.chartXkcd) {
 
 var chartXKCDLine = create('chartxkcd-line');
 var chartXKCDBar = create('chartxkcd-bar');
-var chartXKCDPie = create('chartxkcd-pie');
 var chartXKCDXY = create('chartxkcd-xy');
+var chartXKCDPie = create('chartxkcd-pie');
+var chartXKCDRadar = create('chartxkcd-radar');
 
 export default install;
-export { create as genComponent, chartXKCDLine, chartXKCDBar, chartXKCDPie, chartXKCDXY };
+export { create as genComponent, chartXKCDLine, chartXKCDBar, chartXKCDXY, chartXKCDPie, chartXKCDRadar };

@@ -81,6 +81,8 @@
 
 <body>
   <div id="root">
+    <b style="float: right"><a href="https://github.com/shiyiya/chart.xkcd-vue/edit/master/docs/index.html">edit on
+        github</a></b>
     <!-- readme start --><h1 id="chartxkcd-vue">chart.xkcd-vue</h1>
 <p><a href="https://shiyiya.github.io/chart.xkcd-vue/"><img src="https://raw.githubusercontent.com/timqian/images/master/20190819131226.gif" alt=""></a></p>
 <p><a href="https://timqian.com/chart.xkcd/">chart.xkcd</a> component for Vue.</p>
@@ -172,21 +174,20 @@ Vue.component(&#39;chartxkcd-line&#39;, chartXKCDLine)</code></pre>
             </code></pre>
         <h3>Customize chart by defining options</h3>
         <ul>
-          <li>
-            <code>yTickCount</code>: customize tick numbers you want to see on
-            the y axis (default <code>3</code>)
+          <li><code>yTickCount</code>: customize tick numbers you want to see on the y axis (default <code>3</code>)
           </li>
-          <li>
-            <code>legendPosition</code>: specify where you want to place the
-            legend. (default
-            <code>chartXkcd.config.positionType.upLeft</code>) Possible
-            values:
+          <li><code>legendPosition</code>: specify where you want to place the legend. (default
+            <code>chartXkcd.config.positionType.upLeft</code>)
+            Possible values:
 
             <ul>
               <li>up left: <code>chart.Xkcd.positionType.upLeft</code></li>
-              <li>up right: <code>chart.Xkcd.positionType.upLeft</code></li>
+              <li>up right: <code>chart.Xkcd.positionType.upRight</code></li>
             </ul>
           </li>
+          <li><code>dataColors</code>: array of colors for different datasets</li>
+          <li><code>fontFamily</code>: customize font family used in the chart</li>
+          <li><code>unxkcdify</code>: disable xkcd effect (default <code>false</code>)</li>
         </ul>
       </div>
     </div>
@@ -218,17 +219,12 @@ Vue.component(&#39;chartxkcd-line&#39;, chartXKCDLine)</code></pre>
 
         <h3>Customize chart by defining options</h3>
         <ul>
-          <li>
-            <code>xTickCount</code>: customize tick numbers you want to see on
-            the x axis (default <code>3</code>)
+          <li><code>xTickCount</code>: customize tick numbers you want to see on the x axis (default <code>3</code>)
           </li>
-          <li>
-            <code>yTickCount</code>: customize tick numbers you want to see on
-            the y axis (default <code>3</code>)
+          <li><code>yTickCount</code>: customize tick numbers you want to see on the y axis (default <code>3</code>)
           </li>
-          <li>
-            <code>legendPosition</code>: specify where you want to place the
-            legend (default <code>chartXkcd.config.positionType.upLeft</code>)
+          <li><code>legendPosition</code>: specify where you want to place the legend (default
+            <code>chartXkcd.config.positionType.upLeft</code>)
             Possible values:
 
             <ul>
@@ -236,22 +232,16 @@ Vue.component(&#39;chartxkcd-line&#39;, chartXKCDLine)</code></pre>
               <li>up right: <code>chart.Xkcd.positionType.upLeft</code></li>
             </ul>
           </li>
-          <li>
-            <code>showLine</code>: connect the points with lines (default:
-            <code>false</code>)
-          </li>
-          <li>
-            <code>timeFormat</code>: specify the time format if the x values
-            are time (default <code>undefined</code>) chart.xkcd use
-            <a href="https://github.com/iamkun/dayjs">dayjs</a> to format
-            time, you can find the all the available formats
-            <a
+          <li><code>showLine</code>: connect the points with lines (default: <code>false</code>)</li>
+          <li><code>timeFormat</code>: specify the time format if the x values are time (default <code>undefined</code>)
+            chart.xkcd use <a href="https://github.com/iamkun/dayjs">dayjs</a> to format time, you can find the all the
+            available formats <a
               href="https://github.com/iamkun/dayjs/blob/dev/docs/en/API-reference.md#list-of-all-available-formats">here</a>
           </li>
-          <li>
-            <code>dotSize</code>: you can change size of the dots if you want
-            (default <code>1</code>)
-          </li>
+          <li><code>dotSize</code>: you can change size of the dots if you want (default <code>1</code>)</li>
+          <li><code>dataColors</code>: array of colors for different datasets</li>
+          <li><code>fontFamily</code>: customize font family used in the chart</li>
+          <li><code>unxkcdify</code>: disable xkcd effect (default <code>false</code>)</li>
         </ul>
       </div>
     </div>
@@ -273,10 +263,10 @@ Vue.component(&#39;chartxkcd-line&#39;, chartXKCDLine)</code></pre>
 
         <h3>Customize chart by defining options</h3>
         <ul>
-          <li>
-            <code>yTickCount</code>: customize tick numbers you want to see on
-            the y axis
-          </li>
+          <li><code>yTickCount</code>: customize tick numbers you want to see on the y axis</li>
+          <li><code>dataColors</code>: array of colors for different datasets</li>
+          <li><code>fontFamily</code>: customize font family used in the chart</li>
+          <li><code>unxkcdify</code>: disable xkcd effect (default <code>false</code>)</li>
         </ul>
       </div>
     </div>
@@ -296,31 +286,64 @@ Vue.component(&#39;chartxkcd-line&#39;, chartXKCDLine)</code></pre>
               </code></pre>
         <h3>Customize chart by defining options</h3>
         <ul>
-          <li>
-            <code>innerRadius</code>: specify empty pie chart radius (default:
-            <code>0.5</code>)
+          <li><code>innerRadius</code>: specify empty pie chart radius (default: <code>0.5</code>)
 
             <ul>
-              <li>
-                Want a pie chart? set <code>innerRadius</code> to
-                <code>0</code>
-              </li>
+              <li>Want a pie chart? set <code>innerRadius</code> to <code>0</code></li>
             </ul>
           </li>
-          <li>
-            <code>legendPosition</code>: specify where you want to place the
-            legend. (default
-            <code>chartXkcd.config.positionType.upLeft</code>) Possible
-            values:
+          <li><code>legendPosition</code>: specify where you want to place the legend. (default
+            <code>chartXkcd.config.positionType.upLeft</code>)
+            Possible values:
 
             <ul>
               <li>up left: <code>chart.Xkcd.positionType.upLeft</code></li>
               <li>up right: `chart.Xkcd.positionType.upLeft</li>
             </ul>
           </li>
+          <li><code>dataColors</code>: array of colors for different datasets</li>
+          <li><code>fontFamily</code>: customize font family used in the chart</li>
+          <li><code>unxkcdify</code>: disable xkcd effect (default <code>false</code>)</li>
         </ul>
       </div>
     </div>
+
+    <div class="comp">
+      <h3 class="marked">chartxkcd-radar</h3>
+      <div class="view">
+        <chartxkcd-radar :config="radarConfig"></chartxkcd-radar>
+      </div>
+      <div class="opt">
+        config:
+        <input class="config" type="text" :value="radarConfig | json" />
+        <pre><code class="html temp radar">
+                <script>
+                  document.querySelector('.radar').innerText = '<chartxkcd-radar :config="config"></chartxkcd-radar>'
+                </script>
+              </code></pre>
+        <h3>Customize chart by defining options</h3>
+        <ul>
+          <li><code>showLabels</code>: display labels near every line (default <code>false</code>)</li>
+          <li><code>ticksCount</code>: customize tick numbers you want to see on the main line (default <code>3</code>)
+          </li>
+          <li><code>dotSize</code>: you can change size of the dots if you want (default <code>1</code>)</li>
+          <li><code>showLegend</code>: display legend near chart (default <code>false</code>)</li>
+          <li><code>legendPosition</code>: specify where you want to place the legend. (default
+            <code>chartXkcd.config.positionType.upLeft</code>)
+            Possible values:
+
+            <ul>
+              <li>up left: <code>chart.Xkcd.positionType.upLeft</code></li>
+              <li>up right: <code>chart.Xkcd.positionType.upRight</code></li>
+            </ul>
+          </li>
+          <li><code>dataColors</code>: array of colors for different datasets</li>
+          <li><code>fontFamily</code>: customize font family used in the chart</li>
+          <li><code>unxkcdify</code>: disable xkcd effect (default <code>false</code>)</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
   <!-- js start -->
 <script>
@@ -456,6 +479,26 @@ new Vue({
       options: { // optional
         innerRadius: 0.5,
         legendPosition: chartXkcd.config.positionType.upRight,
+      },
+    },
+    radarConfig: {
+      title: 'Letters in random words',
+      data: {
+        labels: ['c', 'h', 'a', 'r', 't'],
+        datasets: [{
+          label: 'ccharrrt',
+          data: [2, 1, 1, 3, 1],
+        }, {
+          label: 'chhaart',
+          data: [1, 2, 2, 1, 1],
+        }],
+      },
+      options: {
+        showLegend: true,
+        dotSize: 0.8,
+        showLabels: true,
+        legendPosition: chartXkcd.config.positionType.upRight,
+        // unxkcdify: true,
       },
     },
   }

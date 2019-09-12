@@ -9,8 +9,9 @@
   var ctors = {
     'chartxkcd-line': 'Line',
     'chartxkcd-bar': 'Bar',
+    'chartxkcd-xy': 'XY',
     'chartxkcd-pie': 'Pie',
-    'chartxkcd-xy': 'XY'
+    'chartxkcd-radar': 'Radar'
   };
 
   /**
@@ -66,15 +67,17 @@
 
   var chartXKCDLine = create('chartxkcd-line');
   var chartXKCDBar = create('chartxkcd-bar');
-  var chartXKCDPie = create('chartxkcd-pie');
   var chartXKCDXY = create('chartxkcd-xy');
+  var chartXKCDPie = create('chartxkcd-pie');
+  var chartXKCDRadar = create('chartxkcd-radar');
 
   exports.default = install;
   exports.genComponent = create;
   exports.chartXKCDLine = chartXKCDLine;
   exports.chartXKCDBar = chartXKCDBar;
-  exports.chartXKCDPie = chartXKCDPie;
   exports.chartXKCDXY = chartXKCDXY;
+  exports.chartXKCDPie = chartXKCDPie;
+  exports.chartXKCDRadar = chartXKCDRadar;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

@@ -14,13 +14,15 @@ if (typeof window !== 'undefined' && window.Vue && window.chartXkcd) {
 
 var chartXKCDLine = create('chartxkcd-line')
 var chartXKCDBar = create('chartxkcd-bar')
-var chartXKCDPie = create('chartxkcd-pie')
 var chartXKCDXY = create('chartxkcd-xy')
+var chartXKCDPie = create('chartxkcd-pie')
+var chartXKCDRadar = create('chartxkcd-radar')
 
 export {
   create as genComponent,
   chartXKCDLine,
   chartXKCDBar,
+  chartXKCDXY,
   chartXKCDPie,
-  chartXKCDXY
+  chartXKCDRadar
 }
