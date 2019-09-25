@@ -4,6 +4,11 @@
 
 [chart.xkcd](https://timqian.com/chart.xkcd/) component for Vue.
 
+[![stars](https://flat.badgen.net/github/stars/shiyiya/chart.xkcd-vue?icon=github)](https://github.com/shiyiya/chart.xkcd-vue)
+[![npm](https://flat.badgen.net/npm/v/chart.xkcd-vue/?color=fb3e44)](https://www.npmjs.com/package/chart.xkcd-vue)
+[![](https://data.jsdelivr.com/v1/package/gh/shiyiya/chart.xkcd-vue/badge)](https://www.jsdelivr.com/package/gh/shiyiya/chart.xkcd-vue)
+
+
 Read the [documentation](https://shiyiya.github.io/chart.xkcd-vue/) for more information.
 
 [Github](https://github.com/shiyiya/chart.xkcd-vue) | [documentation](https://shiyiya.github.io/chart.xkcd-vue/)
