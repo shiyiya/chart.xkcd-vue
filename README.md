@@ -33,6 +33,10 @@ Chart.xkcd is a chart library plots “sketchy”, “cartoony” or “hand-dra
 
 ## ② Install from `<script>`
 
+```html
+<script src="https://cdn.jsdelivr.net/npm/chart.xkcd-vue@1.0.9/dist/chart.xkcd-vue.min.js"></script>
+ ```
+
 When chart.xkcd-vue is included by `<script>`, it will be installed automatically if `window.Vue` and `window.chartXkcd` exists, ohterwise you should to install it manually by calling `Vue.use(window.chartXkcdVue["default");`
 
 # Use
@@ -51,7 +55,7 @@ import chartXkcdVue from 'chart.xkcd-vue'
 
 // ↓↓↓ will auto register all chart.xkcd component.
 Vue.use(chartXkcdVue)
-```
+````
 
 ## ② Register a single component
 
