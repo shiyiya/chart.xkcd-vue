@@ -81,7 +81,13 @@ export default {
     title: String,
     xLabel: String,
     yLabel: String,
-    data: Object,
+    data: {
+      type: Object,
+      default: () => ({
+        datasets: [],
+        labels: []
+      })
+    },
     options: {
       type: Object,
       default: () => ({
@@ -101,39 +107,29 @@ export default {
         bottom: 50,
         left: 50
       },
-      filter: this.options.unxkcdify ? null : 'url(#xkcdify)',
       config: config,
       width: 0,
       height: 0,
       nwidth: 0,
       nheight: 0,
       tooltip: false,
-      tooltipConfig: {},
-      // eslint-disable-next-line vue/no-reserved-keys
-      _options: {
-        unxkcdify: false,
-        yTickCount: 3,
-        dataColors: [],
-        fontFamily: 'xkcd'
-      }
+      tooltipConfig: {}
     }
   },
 
-  updated() {
-    this._options = Object.assign(
-      {
+  computed: {
+    _options() {
+      return {
         unxkcdify: false,
         yTickCount: 3,
         dataColors: [],
-        fontFamily: 'xkcd'
-      },
-      this.options
-    )
-    console.log(this.options.unxkcdify)
-    console.log(this._options.unxkcdify)
-  },
-
-  computed: {
+        fontFamily: 'xkcd',
+        ...this.options
+      }
+    },
+    filter() {
+      return this._options.unxkcdify ? null : 'url(#xkcdify)'
+    },
     xScale() {
       return scaleBand()
         .range([0, this.nwidth])
@@ -159,21 +155,9 @@ export default {
     // addAxis
   ],
 
-  beforeMount() {
-    // TODO merge {xx: null} => {xx: default}
-    this._options = Object.assign(
-      {
-        unxkcdify: false,
-        yTickCount: 3,
-        dataColors: [],
-        fontFamily: 'xkcd'
-      },
-      this.options
-    )
-  },
-
   methods: {
     loadChart() {
+      // TODO Proxy
       selectAll('.xkcd-chart-bar')
         .data(this.data.datasets[0].data)
         .on('mouseover', (d, i, nodes) => {
@@ -228,6 +212,7 @@ export default {
       margin
     } = this
 
+    //TODO better ?
     this.width = svg.parentElement.clientWidth
     this.height = Math.min(
       (svg.parentElement.clientWidth * 2) / 3,

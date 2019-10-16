@@ -14,7 +14,6 @@ export default {
   props: ['yScale', 'xScale', 'options', 'height'],
   data() {
     return {
-      unxkcdify: this.options.unxkcdify,
       tickCount: this.options.tickCount,
       fontFamily: this.options.fontFamily
     }
@@ -43,9 +42,7 @@ export default {
         )
     },
     handleXKCD() {
-      const { unxkcdify } = this
-
-      console.log(unxkcdify)
+      const { unxkcdify } = this.options
 
       select('.axis-wrapper')
         .selectAll('.domain')

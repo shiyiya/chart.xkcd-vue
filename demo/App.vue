@@ -54,7 +54,6 @@ export default {
       this.bconfig = JSON.parse(e.target.value)
     },
     togglexkcd() {
-      this.bconfig.xLabel = 'sasas'
       this.bconfig.options.unxkcdify = !this.bconfig.options.unxkcdify
     }
   },
