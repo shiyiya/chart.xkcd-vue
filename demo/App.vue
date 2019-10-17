@@ -6,6 +6,7 @@
     <button @click="togglexkcd">
       {{ !bconfig.options.unxkcdify ? 'xkcdify' : 'normal' }}
     </button>
+    <button @click="addrow">add row</button>
   </div>
 </template>
 
@@ -40,7 +41,7 @@ export default {
           labels: ['github stars', 'patrons'],
           datasets: [{ data: [100, 500] }]
         },
-        options: { yTickCount: 2, unxkcdify: false }
+        options: { yTickCount: 1, unxkcdify: false }
       }
     }
   },
@@ -55,6 +56,14 @@ export default {
     },
     togglexkcd() {
       this.bconfig.options.unxkcdify = !this.bconfig.options.unxkcdify
+    },
+    addrow() {
+      this.bconfig.data.datasets[0].data.push(Math.random() * 500 + 1)
+      this.bconfig.data.labels.push(
+        Math.random()
+          .toString(36)
+          .substr(3)
+      )
     }
   },
   components: {

@@ -40,7 +40,7 @@ import addLabels from './mixins/addLabels'
 import addFont from './mixins/addFont'
 import addFilter from './mixins/addFilter'
 import initData from './mixins/initData'
-import colors from './mixins/colors'
+import { colors } from './config'
 import addLegend from './mixins/addLegend'
 import config from './config'
 
@@ -182,20 +182,16 @@ export default {
       .attr('fill', 'none')
       // .attr('stroke', 'black')
       .on('mouseover', () => {
-        console.log(11)
         circles.forEach(circle => circle.style('visibility', 'visible'))
         verticalLine.style('visibility', 'visible')
         // tooltip.show();
       })
       .on('mouseout', () => {
-        console.log(11)
         circles.forEach(circle => circle.style('visibility', 'hidden'))
         verticalLine.style('visibility', 'hidden')
         // tooltip.hide();
       })
       .on('mousemove', (d, i, nodes) => {
-        console.log(11)
-
         const tipX = mouse(nodes[i])[0] + margin.left + 10
         const tipY = mouse(nodes[i])[1] + margin.top + 10
 

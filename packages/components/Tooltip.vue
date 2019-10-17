@@ -4,7 +4,9 @@
     ref="Tooltip"
     :x="_getUpLeftX"
     :y="_getUpLeftY"
-    :style="`visibility: ${show ? 'visible' : 'hidden;'}`"
+    :style="
+      `visibility: ${show ? 'visible' : 'hidden'};'pointer-events': 'none';`
+    "
   >
     <rect
       fill-opacity="0.85"
@@ -44,22 +46,10 @@ import config from '../config'
 export default {
   name: 'Tooltip',
   props: {
-    show: {
-      type: Boolean,
-      default: () => false
-    },
-    title: {
-      type: String,
-      default: () => ''
-    },
-    items: {
-      type: Array,
-      default: () => []
-    },
-    position: {
-      type: Object,
-      default: () => ({ type: 2, x: 30, y: 30 })
-    },
+    show: { type: Boolean, default: () => false },
+    title: { type: String, default: () => '' },
+    items: { type: Array, default: () => [] },
+    position: { type: Object, default: () => ({ type: 2, x: 30, y: 30 }) },
     unxkcdify: { type: Boolean, default: () => false }
   },
 

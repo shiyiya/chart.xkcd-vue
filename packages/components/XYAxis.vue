@@ -1,5 +1,5 @@
 <template>
-  <g class="axis-wrapper">
+  <g :class="`${!options.unxkcdify ? 'axis-wrapper xkcd' : 'axis-wrapper'}`">
     <g ref="yScale" class="axis-y"></g>
     <g ref="xScale" class="axis-x"></g>
   </g>
@@ -40,25 +40,9 @@ export default {
             .tickPadding(6)
             .ticks(tickCount)
         )
-    },
-    handleXKCD() {
-      const { unxkcdify } = this.options
-
-      select('.axis-wrapper')
-        .selectAll('.domain')
-        .attr('filter', !unxkcdify ? 'url(#xkcdify)' : null)
-        .style('stroke', 'black')
-
-      select('.axis-wrapper')
-        .selectAll('.tick > text')
-        .style('font-family', unxkcdify ? 'inherit' : this.fontFamily || 'xkcd')
-        .style('font-size', '16')
     }
   },
   watch: {
-    'options.unxkcdify': function() {
-      this.handleXKCD()
-    },
     height() {
       this.handleX()
     },
@@ -72,7 +56,25 @@ export default {
   mounted() {
     this.handleY()
     this.handleX()
-    this.handleXKCD()
   }
 }
 </script>
+
+<style>
+.axis-wrapper path {
+  stroke: black;
+}
+
+.axis-wrapper text {
+  font-size: 16px;
+  font-family: 'inherit';
+}
+
+.xkcd path {
+  filter: url(#xkcdify);
+}
+
+.xkcd text {
+  font-family: xkcd;
+}
+</style>

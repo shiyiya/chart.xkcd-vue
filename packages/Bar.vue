@@ -12,7 +12,10 @@
   >
     <Title v-if="title" :title="title" />
 
-    <g :transform="`translate(${margin.left}, ${margin.top})`">
+    <g
+      :transform="`translate(${margin.left}, ${margin.top})`"
+      class="xkcd-chart-bar-main"
+    >
       <XYAxis
         :height="nheight"
         :xScale="xScale"
@@ -22,8 +25,9 @@
       <g class="xkcd-chart-bar-wrapper">
         <rect
           v-for="(item, key) in data.datasets[0].data"
-          class="xkcd-chart-bar"
           :key="key"
+          class="xkcd-chart-bar"
+          :data-index="key"
           :x="xScale(data.labels[key])"
           :y="yScale(item)"
           :width="xScale.bandwidth()"
@@ -55,19 +59,12 @@
 
 <script>
 import select from 'd3-selection/src/select'
-import selectAll from 'd3-selection/src/selectAll'
-import mouse from 'd3-selection/src/mouse'
 import scaleBand from 'd3-scale/src/band'
 import scaleLinear from 'd3-scale/src/linear'
-// import { transition } from "d3-transition";
-
-// import addAxis from "./mixins/addAxis";
-// import addLabels from "./mixins/addLabels";
 import addFont from './mixins/addFont'
 import addFilter from './mixins/addFilter'
 import initData from './mixins/initData'
-import colors from './mixins/colors'
-import config from './config'
+import config, { colors, margin } from './config'
 
 import Title from './components/Title'
 import XYLabel from './components/XYLabel'
@@ -101,12 +98,7 @@ export default {
 
   data() {
     return {
-      margin: {
-        top: 50,
-        right: 30,
-        bottom: 50,
-        left: 50
-      },
+      margin: margin,
       config: config,
       width: 0,
       height: 0,
@@ -141,68 +133,76 @@ export default {
     },
     yScale() {
       return scaleLinear()
-        .domain([0, Math.max(...this.allData)])
         .range([this.nheight, 0])
+        .domain([0, Math.max(...this.allData)])
     }
   },
 
-  mixins: [
-    initData,
-    addFont,
-    addFilter
-    // addLabels.xLabel,
-    // addLabels.yLabel,
-    // addAxis
-  ],
+  mixins: [initData, addFont, addFilter],
 
   methods: {
-    loadChart() {
-      // TODO Proxy
-      selectAll('.xkcd-chart-bar')
-        .data(this.data.datasets[0].data)
-        .on('mouseover', (d, i, nodes) => {
-          select(nodes[i]).attr(
-            'fill',
-            this._options.dataColors[i]
+    mouseover({ target }) {
+      if (target.classList.contains('xkcd-chart-bar')) {
+        const i = Number(target.getAttribute('data-index'))
+        select(target).attr(
+          'fill',
+          this._options.dataColors[i] ? this._options.dataColors[i] : colors[i]
+        )
+        this.tooltip = true
+      }
+    },
+    mouseout({ target }) {
+      select(target).attr('fill', 'none')
+      this.tooltip = false
+    },
+    mousemove(e) {
+      const { target } = e
+
+      if (!target.classList.contains('xkcd-chart-bar')) return
+
+      const i = Number(target.getAttribute('data-index'))
+      const d = this.data.datasets[0].data[i]
+      const tipX = e.offsetX
+      const tipY = e.offsetY
+
+      let tooltipPositionType = config.positionType.downRight
+      if (tipX > this.width / 2 && tipY < this.height / 2) {
+        tooltipPositionType = config.positionType.downLeft
+      } else if (tipX > this.width / 2 && tipY > this.height / 2) {
+        tooltipPositionType = config.positionType.upLeft
+      } else if (tipX < this.width / 2 && tipY > this.height / 2) {
+        tooltipPositionType = config.positionType.upRight
+      }
+
+      this.tooltipConfig = {
+        title: this.data.labels[i],
+        items: [
+          {
+            color: this._options.dataColors
               ? this._options.dataColors[i]
-              : colors[i]
-          )
-          this.tooltip = true
-        })
-        .on('mouseout', (d, i, nodes) => {
-          select(nodes[i]).attr('fill', 'none')
-          this.tooltip = false
-        })
-        .on('mousemove', (d, i, nodes) => {
-          const tipX = mouse(nodes[i])[0] + this.margin.left + 10
-          const tipY = mouse(nodes[i])[1] + this.margin.top + 10
-
-          let tooltipPositionType = config.positionType.downRight
-          if (tipX > this.width / 2 && tipY < this.height / 2) {
-            tooltipPositionType = config.positionType.downLeft
-          } else if (tipX > this.width / 2 && tipY > this.height / 2) {
-            tooltipPositionType = config.positionType.upLeft
-          } else if (tipX < this.width / 2 && tipY > this.height / 2) {
-            tooltipPositionType = config.positionType.upRight
+              : colors[i],
+            text: `${this.data.datasets[0].label || ''}: ${d}`
           }
+        ],
+        position: {
+          x: tipX,
+          y: tipY,
+          type: tooltipPositionType
+        }
+      }
+    },
+    addEventListener() {
+      document
+        .querySelector('.xkcd-chart-bar-wrapper')
+        .addEventListener('mouseover', this.mouseover)
 
-          this.tooltipConfig = {
-            title: this.data.labels[i],
-            items: [
-              {
-                color: this._options.dataColors
-                  ? this._options.dataColors[i]
-                  : colors[i],
-                text: `${this.data.datasets[0].label || ''}: ${d}`
-              }
-            ],
-            position: {
-              x: tipX,
-              y: tipY,
-              type: tooltipPositionType
-            }
-          }
-        })
+      document
+        .querySelector('.xkcd-chart-bar-wrapper')
+        .addEventListener('mouseout', this.mouseout)
+
+      document
+        .querySelector('.xkcd-chart-bar-wrapper')
+        .addEventListener('mousemove', this.mousemove)
     }
   },
 
@@ -222,10 +222,21 @@ export default {
     this.nwidth = this.width - margin.left - margin.right
     this.nheight = this.height - margin.top - margin.bottom
 
-    this.loadChart()
+    this.addEventListener()
+  },
 
-    // this.addxAxis();
-    // this.addyAxis();
+  beforeDestroy() {
+    document
+      .querySelector('.xkcd-chart-bar-wrapper')
+      .removeEventListener('mouseover', this.mouseover)
+
+    document
+      .querySelector('.xkcd-chart-bar-wrapper')
+      .removeEventListener('mouseout', this.mouseout)
+
+    document
+      .querySelector('.xkcd-chart-bar-wrapper')
+      .removeEventListener('mousemove', this.mousemove)
   },
 
   components: { Tooltip, Title, XYLabel, XYAxis }

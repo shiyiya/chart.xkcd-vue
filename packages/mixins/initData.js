@@ -26,26 +26,25 @@ export default {
     this.nheight = this.height - margin.top - margin.bottom
   },
   watch: {
-    //not run
     title() {
       if (this.title) {
         this.margin.top = 60
       } else {
         this.margin.top = 50
       }
+    },
+    xLabel() {
+      if (this.xLabel) {
+        this.margin.bottom = 50
+      }
+    },
+    yLabel() {
+      console.log(this.margin)
+      if (this.yLabel) {
+        this.margin.left = 70
+      } else {
+        this.margin.left = 50
+      }
     }
-  },
-  xLabel() {
-    if (this.xLabel) {
-      this.margin.bottom = 50
-    }
-  },
-  yLabel: function() {
-    if (this.yLabel) {
-      this.margin.left = 70
-    } else {
-      this.margin.left = 50
-    }
-    console.log(this.margin)
   }
 }

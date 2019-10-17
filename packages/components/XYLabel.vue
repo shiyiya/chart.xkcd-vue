@@ -13,7 +13,7 @@
       ref="ylable"
       class="ylable"
       v-if="yLabel"
-      text-anchor="end"
+      text-anchor="middle"
       dy=".75em"
       y="6"
       x="0"
@@ -44,8 +44,7 @@ export default {
     getYlabelX() {
       this.$refs.ylable &&
         select(this.$refs.ylable).call(f => {
-          const textLength = f.node().getComputedTextLength()
-          f.attr('x', 0 - this.height / 2 + textLength / 2)
+          f.attr('x', 0 - this.height / 2)
         })
     }
   },
