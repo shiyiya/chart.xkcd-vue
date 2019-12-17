@@ -5,7 +5,8 @@ var ctors = {
   'chartxkcd-bar': 'Bar',
   'chartxkcd-xy': 'XY',
   'chartxkcd-pie': 'Pie',
-  'chartxkcd-radar': 'Radar'
+  'chartxkcd-radar': 'Radar',
+  'chartxkcd-stackedbar': 'StackedBar'
 };
 
 /**
@@ -64,6 +65,7 @@ var chartXKCDBar = create('chartxkcd-bar');
 var chartXKCDXY = create('chartxkcd-xy');
 var chartXKCDPie = create('chartxkcd-pie');
 var chartXKCDRadar = create('chartxkcd-radar');
+var chartxkcdStackedbar = create('chartxkcd-stackedbar');
 
 export default install;
-export { create as genComponent, chartXKCDLine, chartXKCDBar, chartXKCDXY, chartXKCDPie, chartXKCDRadar };
+export { create as genComponent, chartXKCDLine, chartXKCDBar, chartXKCDXY, chartXKCDPie, chartXKCDRadar, chartxkcdStackedbar };

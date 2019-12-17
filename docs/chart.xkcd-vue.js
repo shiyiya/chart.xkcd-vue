@@ -11,7 +11,8 @@
     'chartxkcd-bar': 'Bar',
     'chartxkcd-xy': 'XY',
     'chartxkcd-pie': 'Pie',
-    'chartxkcd-radar': 'Radar'
+    'chartxkcd-radar': 'Radar',
+    'chartxkcd-stackedbar': 'StackedBar'
   };
 
   /**

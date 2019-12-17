@@ -41,15 +41,15 @@
   },
   "homepage": "https://shiyiya.github.io/chart.xkcd-vue/",
   "peerDependencies": {
-    "chart.xkcd": ">=1.0.8",
+    "chart.xkcd": ">=1.1.12",
     "vue": ">=2.0.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chart.xkcd": "^1.1.5",
     "eslint": "^5.12.1",
+    "chart.xkcd": "^1.1.12",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-import": "^2.19.1",
     "karma": "^4.3.0",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.2.0",
@@ -60,6 +60,6 @@
     "mocha": "^5.2.0",
     "rollup": "^0.68.2",
     "rollup-plugin-istanbul": "^2.0.1",
-    "vue": "^2.5.22"
+    "vue": "^2.6.11"
   }
 }

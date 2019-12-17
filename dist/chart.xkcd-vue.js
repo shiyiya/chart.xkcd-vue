@@ -11,7 +11,8 @@
     'chartxkcd-bar': 'Bar',
     'chartxkcd-xy': 'XY',
     'chartxkcd-pie': 'Pie',
-    'chartxkcd-radar': 'Radar'
+    'chartxkcd-radar': 'Radar',
+    'chartxkcd-stackedbar': 'StackedBar'
   };
 
   /**
@@ -70,6 +71,7 @@
   var chartXKCDXY = create('chartxkcd-xy');
   var chartXKCDPie = create('chartxkcd-pie');
   var chartXKCDRadar = create('chartxkcd-radar');
+  var chartxkcdStackedbar = create('chartxkcd-stackedbar');
 
   exports.default = install;
   exports.genComponent = create;
@@ -78,6 +80,7 @@
   exports.chartXKCDXY = chartXKCDXY;
   exports.chartXKCDPie = chartXKCDPie;
   exports.chartXKCDRadar = chartXKCDRadar;
+  exports.chartxkcdStackedbar = chartxkcdStackedbar;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

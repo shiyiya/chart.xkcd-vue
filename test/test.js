@@ -31,15 +31,19 @@ describe('chart.xkcd-vue', function () {
   })
 
   it('should support <chartxkcd-pie> component', function () {
-    return componentHelper('< <chartxkcd-pie> :config="{}"></chartxkcd-pie>')
+    return componentHelper('<chartxkcd-pie> :config="{}"></chartxkcd-pie>')
   })
 
-  it('should support <chartxkcd-xy> component', function () {
-    return componentHelper('<chartxkcd-xy> :config="{}"></chartxkcd-xy>')
+  it('should support <chartxkcd-radar> component', function () {
+    return componentHelper('<chartxkcd-radar> :config="{}"></chartxkcd-radar>')
+  })
+
+  it('should support <chartxkcd-stackedbar> component', function () {
+    return componentHelper('<chartxkcd-stackedbar> :config="{}"></chartxkcd-stackedbar>')
   })
 
   it('can generate single Componet', function () {
-    var names = ['chartxkcd-line', 'chartxkcd-bar', 'chartxkcd-pie', 'chartxkcd-xy']
+    var names = ['chartxkcd-line', 'chartxkcd-bar', 'chartxkcd-pie', 'chartxkcd-xy', 'chartxkcd-radar', 'chartxkcd-stackedbar']
     names.forEach(function (name) {
       var Component = genComponent(name)
       expect(Component.name).to.equal(name)

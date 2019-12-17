@@ -171,6 +171,26 @@ new Vue({
         // unxkcdify: true,
       },
     },
+    stackedConfig: {
+      title: 'Letters in random words',
+      data: {
+        labels: ['c', 'h', 'a', 'r', 't'],
+        datasets: [{
+          label: 'ccharrrt',
+          data: [2, 1, 1, 3, 1],
+        }, {
+          label: 'chhaart',
+          data: [1, 2, 2, 1, 1],
+        }],
+      },
+      options: {
+        showLegend: true,
+        dotSize: 0.8,
+        showLabels: true,
+        legendPosition: chartXkcd.config.positionType.upRight,
+        // unxkcdify: true,
+      },
+    }
   }
 })
 </script>

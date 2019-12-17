@@ -17,6 +17,7 @@ var chartXKCDBar = create('chartxkcd-bar')
 var chartXKCDXY = create('chartxkcd-xy')
 var chartXKCDPie = create('chartxkcd-pie')
 var chartXKCDRadar = create('chartxkcd-radar')
+var chartxkcdStackedbar = create('chartxkcd-stackedbar')
 
 export {
   create as genComponent,
@@ -24,5 +25,6 @@ export {
   chartXKCDBar,
   chartXKCDXY,
   chartXKCDPie,
-  chartXKCDRadar
+  chartXKCDRadar,
+  chartxkcdStackedbar
 }
